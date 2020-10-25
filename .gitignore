@@ -490,3 +490,6 @@ InitTestScene*.unity
 
 
 # End of https://www.toptal.com/developers/gitignore/api/unity,csharp,rider
+
+# Pretty sure we don't need this folder at all
+.idea
