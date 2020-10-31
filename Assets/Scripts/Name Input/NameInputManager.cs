@@ -36,13 +36,15 @@ public class NameInputManager : MonoBehaviour
     {
         if (InputNameText.text.Length == 0)
         {
-           ErrorText.text = PleaseEnterANameErrorMessage;
+            ErrorText.text = PleaseEnterANameErrorMessage;
             return;
         }
 
         GameDataManager.Instance.GameData.Name = InputNameText.text;
+        GameDataManager.Instance.GameData.Characters = new[] {Constants.StarterCharacter};
+        GameDataManager.Instance.GameData.PremiumCurrency = Constants.StartingPremiumCurrencyAmount;
         GameDataManager.Instance.Save();
-        
+
         ChangeScene.ChangeSceneTo(NextSceneName);
     }
 
