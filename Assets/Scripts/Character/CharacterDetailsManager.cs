@@ -6,6 +6,7 @@ public class CharacterDetailsManager : MonoBehaviour
 {
     public Text PlayerNameText;
     public GameObject CharacterSelectScreen;
+    public CharacterSelectUI[] characterSelectUIs;
 
     private void Awake()
     {
