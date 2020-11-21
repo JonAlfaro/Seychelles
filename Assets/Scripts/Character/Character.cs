@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
 
     public void SetCharacter(CharacterData data)
     {
-        // TODO get character image from data.Id
+        // TODO get character image from data.Id. This might need to be reworked a little
 
         CharacterData = data;
         

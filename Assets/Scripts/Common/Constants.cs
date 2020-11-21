@@ -8,4 +8,5 @@ public static class Constants
     public static int StartingPremiumCurrencyAmount = 30;
     public static string PremiumCurrencyName = "Frog Knife Coin Gem Crystals";
     public static Color DeadColor = new Color(125, 125, 125, 100);
+    public static string CharacterResourceFolder = "Characters";
 }
