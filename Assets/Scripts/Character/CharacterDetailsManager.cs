@@ -92,8 +92,9 @@ public class CharacterDetailsManager : MonoBehaviour
             
             // Assign the sprite of this character based on its id
             Image characterImage = go.GetComponent<Image>();
+            string imageResourceName = $"{Constants.CharacterResourcePrefix}{character.Id.ToString()}";
             // TODO Resources.Load should be cached for performance. Ignoring it for now since it's not important on this project
-            Sprite characterSprite = Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, character.Id.ToString()));
+            Sprite characterSprite = Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, imageResourceName));
             characterImage.sprite = characterSprite;
             
             // Add an onClick event to this character select item
@@ -132,8 +133,8 @@ public class CharacterDetailsManager : MonoBehaviour
             characterSelectUI.NameText.text = "Select A Frog";
             return;
         }
-        
-        characterSelectUI.Image.sprite = Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, characterData.Id.ToString()));
+        string imageResourceName = $"{Constants.CharacterResourcePrefix}{characterData.Id.ToString()}";
+        characterSelectUI.Image.sprite = Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, imageResourceName));
         characterSelectUI.AttackText.text = $"ATK: {characterData.CharacterStats.Attack.ToString()}";
         characterSelectUI.HealthText.text = $"HP: {characterData.CharacterStats.Health.ToString()}";
         characterSelectUI.NameText.text = characterData.Name;
