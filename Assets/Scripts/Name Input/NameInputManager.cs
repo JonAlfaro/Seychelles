@@ -41,8 +41,8 @@ public class NameInputManager : MonoBehaviour
         }
 
         GameDataManager.Instance.GameData.Name = InputNameText.text;
-        GameDataManager.Instance.GameData.SelectedCharacters = Constants.StarterSelectedCharacters;
-        GameDataManager.Instance.GameData.UnlockedCharacters = Constants.StarterUnlockedCharacters;
+        GameDataManager.Instance.GameData.SelectedCharacters = CharacterList.StarterSelectedCharacters.ToArray();
+        GameDataManager.Instance.GameData.UnlockedCharacters = CharacterList.StarterUnlockedCharacters.ToArray();
         GameDataManager.Instance.GameData.PremiumCurrency = Constants.StartingPremiumCurrencyAmount;
         GameDataManager.Instance.Save();
 

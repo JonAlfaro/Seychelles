@@ -135,8 +135,8 @@ public class CharacterDetailsManager : MonoBehaviour
         }
         string imageResourceName = $"{characterData.Id.ToString()}{Constants.BremiumResourceSuffix}";
         characterSelectUI.Image.sprite = Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, imageResourceName));
-        characterSelectUI.AttackText.text = $"ATK: {characterData.CharacterStats.Attack.ToString()}";
-        characterSelectUI.HealthText.text = $"HP: {characterData.CharacterStats.Health.ToString()}";
+        characterSelectUI.AttackText.text = $"ATK: {characterData.Attack.ToString()}";
+        characterSelectUI.HealthText.text = $"HP: {characterData.Health.ToString()}";
         characterSelectUI.NameText.text = characterData.Name;
     }
 }
