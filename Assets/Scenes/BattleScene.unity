@@ -1132,6 +1132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1481188137}
   - component: {fileID: 1481188136}
+  - component: {fileID: 1481188138}
   m_Layer: 0
   m_Name: DEBUG
   m_TagString: Untagged
@@ -1154,7 +1155,7 @@ MonoBehaviour:
   SplashIcon: {fileID: 0}
   UICanvas: {fileID: 83619211}
   OverlayColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
-  Speed: 0.2
+  Speed: 0
 --- !u!4 &1481188137
 Transform:
   m_ObjectHideFlags: 0
@@ -1169,6 +1170,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1481188138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481188135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 442807a2194f16e478faebd19dea64e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flrSprites: []
+  flrLayers: []
+  camera: {fileID: 2076264476}
+  parallaxEffect: 5
 --- !u!1 &1630855422
 GameObject:
   m_ObjectHideFlags: 0
