@@ -9,6 +9,7 @@ public class CharacterData
     public int Health { get; set; }
     public int CurrentHealth { get; set; }
     public Rarity Rarity { get; set; }
+    public int DuplicateLevel { get; set; }
 
     public CharacterData(int id, int health, int attack, string name, string description, Rarity rarity)
     {
@@ -20,6 +21,7 @@ public class CharacterData
         CurrentHealth = health;
         Rarity = rarity;
         Experience = 0;
+        DuplicateLevel = 0;
     }
 }
 

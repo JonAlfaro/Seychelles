@@ -18,4 +18,5 @@ public static class Constants
         {Rarity.gun, 7},
         {Rarity.doubleGun, 1},
     };
+    public static int GachaCost = 100;
 }

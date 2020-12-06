@@ -10,6 +10,7 @@ public class CharacterDetailsManager : MonoBehaviour
     public Text PlayerNameText;
     public Text SelectedCharacterNameText;
     public Text SelectedCharacterDescriptionText;
+    public Text SelectedCharacterDuplicateText;
     public Button SelectCharacterButton;
     public GameObject CharacterSelectScreen;
     public GameObject CharacterGrid;
@@ -27,6 +28,7 @@ public class CharacterDetailsManager : MonoBehaviour
         Assert.IsNotNull(CharacterGrid);
         Assert.IsNotNull(SelectedCharacterNameText);
         Assert.IsNotNull(SelectedCharacterDescriptionText);
+        Assert.IsNotNull(SelectedCharacterDuplicateText);
         Assert.IsNotNull(SelectCharacterButton);
         Assert.IsNotNull(NoCharacterSelectedImage);
         Assert.IsTrue(CharacterSelectUIs != null && CharacterSelectUIs.Length != 0);
@@ -108,6 +110,7 @@ public class CharacterDetailsManager : MonoBehaviour
         selectedCharacter = character;
         SelectedCharacterNameText.text = character?.Name;
         SelectedCharacterDescriptionText.text = character?.Description;
+        SelectedCharacterDuplicateText.text = character != null ? $"Duplicate level: {character.DuplicateLevel}" : "";
         SelectCharacterButton.interactable = selectedCharacter != null;
     }
 
