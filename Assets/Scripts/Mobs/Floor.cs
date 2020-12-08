@@ -41,7 +41,6 @@ public class Floor : MonoBehaviour
             if (layerSegments.Count >= 3)
             {
                 float startPos = layerSegments.First().transform.localPosition.x + (layerSegments[0].transform.localPosition.x - layerSegments[1].transform.localPosition.x);
-                Debug.Log(startPos);
                 _flrLayerSegments.Add(Tuple.Create(layerSegments, new Vector2(startPos, layerSegments.Last().transform.localPosition.x)));
             }
             

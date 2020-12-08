@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using Random = System.Random;
 using URandom = UnityEngine.Random;
 
@@ -25,6 +26,8 @@ public class FloorManager : MonoBehaviour
     // Enemies Per Floor
     public List<int> _ePerFloor = new List<int> {2, 3, 4, 2, 3,};
     public Color hueShift = Color.white;
+    
+   
 
     void Start()
     {
@@ -35,6 +38,12 @@ public class FloorManager : MonoBehaviour
 
     void Update()
     {
+        // Shake
+        if (Input.GetKeyDown("z"))
+        {
+            mobManager.currentMobs[1].GetComponent<Mob>().Shake();   
+        }
+
         if (Input.GetKeyDown("space"))
         {
             NextFloor();
