@@ -1,69 +1,77 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Floor : MonoBehaviour
 {
-    public List<Sprite> flrSprites = new List<Sprite>();
-    public List<GameObject> flrLayers = new List<GameObject>();
-    public Camera camera;
-    private float length, startPostion;
-    public float parallaxEffect;
-    
-    void Start()
+    public GameObject[] flrLayers;
+    public float[] flrLayerSpeeds;
+    public float defaultLayerSpeed = 1;
+    private List<Tuple<List<GameObject>, Vector2>> _flrLayerSegments = new List<Tuple<List<GameObject>, Vector2>>();
+
+    private void Start()
     {
-        startPostion = transform.position.x;
-        Object[] loadedSprites = Resources.LoadAll("Floors/floor0", typeof(Sprite));
-        Debug.Log(loadedSprites.Length);
-        GameObject go = new GameObject();
-        for (int x = 0; x < loadedSprites.Length; x++)
+        for (int i = 0; i < flrLayers.Length; i++) 
         {
-            flrSprites.Add((Sprite) loadedSprites[x]);
-            for (int y = 0; y < 3; y++)
+            var layerSpeed = defaultLayerSpeed;
+            // Set layer Speed if its set in the array
+            if(i < flrLayerSpeeds.Length)
             {
-                flrLayers.Add(Instantiate(go, this.transform, true));
-                flrLayers[(x*3) + y].name = "flrLayer"+x+"-"+y;
-                SpriteRenderer sprRenderer = flrLayers[(x * 3) + y].AddComponent<SpriteRenderer>();
-                sprRenderer.sprite = (Sprite) loadedSprites[x];
-                
-                // TODO: Make this a function I guess
-                float spriteHeight = sprRenderer.sprite.bounds.size.y;
-                float spriteWidth = sprRenderer.sprite.bounds.size.x;
-                float distance = flrLayers[(x*3) + y].transform.position.z - camera.transform.position.z;
-                float screenHeight = 2 * Mathf.Tan(camera.fieldOfView * Mathf.Deg2Rad / 2) * distance;
-                float screenWidth = screenHeight * camera.aspect;
-                flrLayers[(x*3) + y].transform.localScale = new Vector3(screenWidth / spriteWidth, screenHeight / spriteHeight, 1);
-
-                sprRenderer.sortingOrder = (loadedSprites.Length-x);
-                length = sprRenderer.bounds.size.x;
-
-                var pos = flrLayers[(x * 3) + y].transform.position;
-                if (y == 1)
-                {
-                    pos.x += sprRenderer.bounds.size.x;
-                    flrLayers[(x * 3) + y].transform.position = pos;
-                } else if (y == 2)
-                {
-                    pos.x -= sprRenderer.bounds.size.x;
-                    flrLayers[(x * 3) + y].transform.position = pos;
-                }
-                
+                layerSpeed = flrLayerSpeeds[i];
             }
+            
+            var layerSegments = new List<GameObject>();
+            bool first = true;
+            foreach (Transform  childT in flrLayers[i].GetComponentsInChildren<Transform>())
+            {
+                if (first)
+                {
+                    first = false;
+                    continue;
+                }
+                layerSegments.Add(childT.gameObject);
+            }
+            
+            
+            if (layerSegments.Count >= 3)
+            {
+                float startPos = layerSegments.First().transform.localPosition.x + (layerSegments[0].transform.localPosition.x - layerSegments[1].transform.localPosition.x);
+                Debug.Log(startPos);
+                _flrLayerSegments.Add(Tuple.Create(layerSegments, new Vector2(startPos, layerSegments.Last().transform.localPosition.x)));
+            }
+            
         }
-        
-        Destroy(go);
     }
 
     // Update is called once per frame
     void Update()
     {
-        float dist = (camera.transform.position.x * parallaxEffect);
-        for (int y = 0; y < 3; y++)
+        for (var i = 0; i < _flrLayerSegments.Count; i++)
         {
-            flrLayers[y].transform.position = new Vector3(startPostion + dist, flrLayers[y].transform.position.y, flrLayers[y].transform.position.z);
+            foreach (var gbSegment in _flrLayerSegments[i].Item1)
+            {
+                var layerSpeed = defaultLayerSpeed;
+                // Set layer Speed if its set in the array
+                if(i < flrLayerSpeeds.Length)
+                {
+                    layerSpeed = flrLayerSpeeds[i];
+                }
+                
+                // Note:
+                // _flrLayerSegments[i].Item2.x = First x
+                // _flrLayerSegments[i].Item2.y = Last x
+                if (gbSegment.transform.localPosition.x < _flrLayerSegments[i].Item2.x)
+                {
+                    gbSegment.transform.localPosition = new Vector3( _flrLayerSegments[i].Item2.y, gbSegment.transform.localPosition.y, gbSegment.transform.localPosition.z);
+                }
+                
+                gbSegment.transform.Translate(Vector3.left * layerSpeed* Time.deltaTime);
+            }
         }
     }
 }
