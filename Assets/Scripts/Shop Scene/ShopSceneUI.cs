@@ -7,10 +7,14 @@ public class ShopSceneUI : MonoBehaviour
     public Text PremiumCurrencyText;
     public Text RollCostText;
     public Button RollButton;
+    public NewCharacterScreenUI NewCharacterScreen;
 
     private void Awake()
     {
         Assert.IsNotNull(PremiumCurrencyText);
+        Assert.IsNotNull(RollCostText);
+        Assert.IsNotNull(RollButton);
+        Assert.IsNotNull(NewCharacterScreen);
     }
 
     private void Start()
@@ -28,6 +32,7 @@ public class ShopSceneUI : MonoBehaviour
             GameDataManager.Instance.AddUnlockedCharacter(unlockedCharacter);
             GameDataManager.Instance.Save();
             SetUpUI();
+            ShowNewCharacterScreen(unlockedCharacter);
         }
     }
 
@@ -36,6 +41,17 @@ public class ShopSceneUI : MonoBehaviour
         GameDataManager.Instance.GameData.PremiumCurrency += 10;
         GameDataManager.Instance.Save();
         SetUpUI();
+    }
+
+    public void HideNewCharacterScreen()
+    {
+        NewCharacterScreen.gameObject.SetActive(false);
+    }
+    
+    private void ShowNewCharacterScreen(CharacterData character)
+    {
+        NewCharacterScreen.SetCharacter(character);
+        NewCharacterScreen.gameObject.SetActive(true);
     }
 
     private void SetUpUI()
