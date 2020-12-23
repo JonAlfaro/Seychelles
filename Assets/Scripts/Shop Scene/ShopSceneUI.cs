@@ -57,7 +57,7 @@ public class ShopSceneUI : MonoBehaviour
     private void SetUpUI()
     {
         RollButton.interactable = GameDataManager.Instance.GameData.PremiumCurrency >= Constants.GachaCost;
-        PremiumCurrencyText.text = $"{Constants.PremiumCurrencyName}: {GameDataManager.Instance.GameData.PremiumCurrency}";
-        RollCostText.text = $"-${Constants.GachaCost}";
+        PremiumCurrencyText.text = $"{GameDataManager.Instance.GameData.PremiumCurrency} {Constants.PremiumCurrencyName}";
+        RollCostText.text = $"${Constants.GachaCost}";
     }
 }
