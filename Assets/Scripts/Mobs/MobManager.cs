@@ -67,6 +67,7 @@ public class MobManager : MonoBehaviour
         // Destroy Exisiting gb
         foreach (var mob in currentMobs)
         {
+            Destroy(mob.HealthBar.gameObject);
             Destroy(mob.Mob.gameObject);
         }
 
@@ -88,13 +89,16 @@ public class MobManager : MonoBehaviour
                 
                 // Move health bar to correct location on Canvas
                 // Only Fired Once, so it'll probably break if resolution changes mid-game
+                var mobPos = mobBody.transform.position;
                 currentMobs[i].HealthBar.transform.position = playerCam.WorldToScreenPoint(
                     new Vector3(
-                        currentMobs[i].Mob.transform.position.x,
-                        currentMobs[i].Mob.transform.position.y + (mobBody.GetComponent<BoxCollider>().bounds.size.y/2) +0.5f,
-                        currentMobs[i].Mob.transform.position.z
+                        mobPos.x,
+                        mobPos.y + (mobBody.GetComponent<BoxCollider>().bounds.size.y/2) +0.5f,
+                        mobPos.z
                     )
                 );
+
+                currentMobs[i].HealthBar.enabled = true;
 
                 currentMobs[i].HealthBar.gameObject.SetActive(true);
                 _mobSpawnIndx = _mobSpawnIndx == mobSpawnPoints.Length - 1 ? _mobSpawnIndx = 0 : _mobSpawnIndx + 1;
@@ -106,23 +110,25 @@ public class MobManager : MonoBehaviour
             var mobBody = Instantiate(levelBoss.GetComponent<Mob>().MobBody, levelBoss.transform.position,
                 Quaternion.identity);
             mobBody.transform.parent = currentMobs.Last().Mob.transform;
+            currentMobs.Last().HealthBar = Instantiate(gameHealthBar, gameCanvas.transform);
+                
+            // Move health bar to correct location on Canvas
+            // Only Fired Once, so it'll probably break if resolution changes mid-game
+            var mobPos = mobBody.transform.position;
+            currentMobs.Last().HealthBar.transform.position = playerCam.WorldToScreenPoint(
+                new Vector3(
+                    mobPos.x,
+                    mobPos.y + (mobBody.GetComponent<BoxCollider>().bounds.size.y/2) +0.5f,
+                    mobPos.z
+                )
+            );
+
+            currentMobs.Last().HealthBar.enabled = true;
+
+            currentMobs.Last().HealthBar.gameObject.SetActive(true);
             mobBody.GetComponentInChildren<SpriteRenderer>().color = flrManager.hueShift;
         }
         
     }
-
-    //     public static Vector3 WorldToScreenSpace(Vector3 worldPos, Camera cam, RectTransform area)
-    // {
-    //     Vector3 screenPoint = cam.WorldToScreenPoint(worldPos);
-    //     screenPoint.z = 0;
-    //  
-    //     Vector2 screenPos;
-    //     if (RectTransformUtility.ScreenPointToLocalPointInRectangle(area, screenPoint, cam, out screenPos))
-    //     {
-    //         return screenPos;
-    //     }
-    //  
-    //     return screenPoint;
-    // }
 
 }
