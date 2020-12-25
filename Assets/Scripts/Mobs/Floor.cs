@@ -12,6 +12,7 @@ public class Floor : MonoBehaviour
     public GameObject[] flrLayers;
     public float[] flrLayerSpeeds;
     public float defaultLayerSpeed = 1;
+    public bool panning;
     private List<Tuple<List<GameObject>, Vector2>> _flrLayerSegments = new List<Tuple<List<GameObject>, Vector2>>();
 
     private void Start()
@@ -50,6 +51,9 @@ public class Floor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!panning)
+            return;
+        
         for (var i = 0; i < _flrLayerSegments.Count; i++)
         {
             foreach (var gbSegment in _flrLayerSegments[i].Item1)
