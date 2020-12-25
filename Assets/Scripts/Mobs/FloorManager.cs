@@ -45,17 +45,17 @@ public class FloorManager : MonoBehaviour
             mobManager.currentMobs[1].MobInfo.Shake();   
         }
 
-        if (Input.GetKeyDown("space"))
-        {
-            NextFloor();
-            print("d = " + GetDifficulty(false));
-            string z = "";
-            foreach( var x in _ePerFloor)
-            {
-                z += " " + x.ToString();
-            }
-            Debug.Log("_ePerFloor = " + z);
-        }
+        // if (Input.GetKeyDown("space"))
+        // {
+        //     NextFloor();
+        //     print("d = " + GetDifficulty(false));
+        //     string z = "";
+        //     foreach( var x in _ePerFloor)
+        //     {
+        //         z += " " + x.ToString();
+        //     }
+        //     Debug.Log("_ePerFloor = " + z);
+        // }
     }
 
 

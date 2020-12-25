@@ -20,6 +20,7 @@ public class CurrentLevelMob
     public GameObject Mob;
     public Mob MobInfo;
     public Image HealthBar;
+    public int MaxHealth;
 
     public CurrentLevelMob(GameObject mob)
     {
@@ -101,6 +102,10 @@ public class MobManager : MonoBehaviour
                 currentMobs[i].HealthBar.enabled = true;
 
                 currentMobs[i].HealthBar.gameObject.SetActive(true);
+                
+                // Save record of max health
+                currentMobs[i].MaxHealth = currentMobs[i].MobInfo.Health;
+                
                 _mobSpawnIndx = _mobSpawnIndx == mobSpawnPoints.Length - 1 ? _mobSpawnIndx = 0 : _mobSpawnIndx + 1;
             }
         }
@@ -126,8 +131,27 @@ public class MobManager : MonoBehaviour
             currentMobs.Last().HealthBar.enabled = true;
 
             currentMobs.Last().HealthBar.gameObject.SetActive(true);
+            
+            // Save record of max health
+            currentMobs.Last().MaxHealth = currentMobs.Last().MobInfo.Health;
+            
             mobBody.GetComponentInChildren<SpriteRenderer>().color = flrManager.hueShift;
         }
+        
+    }
+
+    public void AttackMob(int mobIndex, int dmg)
+    {
+        currentMobs[mobIndex].MobInfo.Health -= dmg;
+        if (currentMobs[mobIndex].MobInfo.Health <= 0)
+        {
+            currentMobs[mobIndex].MobInfo.Health = 0;
+        }
+        currentMobs[mobIndex].MobInfo.Shake();
+        float healthMissing = currentMobs[mobIndex].MaxHealth - currentMobs[mobIndex].MobInfo.Health;
+        currentMobs[mobIndex].HealthBar.fillAmount = 1f - (healthMissing / currentMobs[mobIndex].MaxHealth);
+        
+        
         
     }
 
