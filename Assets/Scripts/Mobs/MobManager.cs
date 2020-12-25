@@ -137,7 +137,25 @@ public class MobManager : MonoBehaviour
             
             mobBody.GetComponentInChildren<SpriteRenderer>().color = flrManager.hueShift;
         }
-        
+    }
+
+    public void AttackRandomAlive(int dmg)
+    {
+        var aliveIndex = GetAliveMobIndexes();
+        if (aliveIndex.Count > 0)
+            AttackMob(aliveIndex[Random.Range(0, aliveIndex.Count)], dmg);
+    }
+
+    public List<int> GetAliveMobIndexes()
+    {
+        List<int> aliveIndex = new List<int>();
+        for (int i = 0; i < currentMobs.Count; i++)
+        {
+            if (currentMobs[i].MobInfo.Health > 0)
+                aliveIndex.Add(i);
+        }
+
+        return aliveIndex;
     }
 
     public void AttackMob(int mobIndex, int dmg)
@@ -146,13 +164,11 @@ public class MobManager : MonoBehaviour
         if (currentMobs[mobIndex].MobInfo.Health <= 0)
         {
             currentMobs[mobIndex].MobInfo.Health = 0;
+            currentMobs[mobIndex].MobInfo.fadeAway = true;
         }
         currentMobs[mobIndex].MobInfo.Shake();
         float healthMissing = currentMobs[mobIndex].MaxHealth - currentMobs[mobIndex].MobInfo.Health;
         currentMobs[mobIndex].HealthBar.fillAmount = 1f - (healthMissing / currentMobs[mobIndex].MaxHealth);
-        
-        
-        
     }
 
 }
