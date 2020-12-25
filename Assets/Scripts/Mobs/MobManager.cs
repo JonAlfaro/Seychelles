@@ -44,7 +44,7 @@ public class MobManager : MonoBehaviour
     public Canvas gameCanvas;
     public Image gameHealthBar;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         SetFloorMobs();
     }
