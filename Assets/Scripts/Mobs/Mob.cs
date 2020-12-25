@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Mob : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Mob : MonoBehaviour
     public bool IsBoss = false;
     public GameObject MobBody;
     public int[] test;
+    public Sprite healthBar;
     
     // Extra
     private Vector3 _originPosition;

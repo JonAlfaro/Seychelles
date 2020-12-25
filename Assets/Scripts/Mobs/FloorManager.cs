@@ -41,7 +41,7 @@ public class FloorManager : MonoBehaviour
         // Shake
         if (Input.GetKeyDown("z"))
         {
-            mobManager.currentMobs[1].GetComponent<Mob>().Shake();   
+            mobManager.currentMobs[1].MobInfo.Shake();   
         }
 
         if (Input.GetKeyDown("space"))

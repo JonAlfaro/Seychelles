@@ -49,3 +49,6 @@ MonoBehaviour:
   IsBoss: 0
   MobBody: {fileID: 2432857827889992310, guid: a823cc8276a90464b8d25a26282886fd, type: 3}
   test: 
+  healthBar: {fileID: 21300000, guid: 886336df112f506448cdf1aa911e683d, type: 3}
+  shakeDecay: 0.002
+  shakeIntensity: 0.3
