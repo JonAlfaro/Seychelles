@@ -7,10 +7,14 @@ public class ShopSceneUI : MonoBehaviour
     public Text PremiumCurrencyText;
     public Text RollCostText;
     public Button RollButton;
+    public NewCharacterScreenUI NewCharacterScreen;
 
     private void Awake()
     {
         Assert.IsNotNull(PremiumCurrencyText);
+        Assert.IsNotNull(RollCostText);
+        Assert.IsNotNull(RollButton);
+        Assert.IsNotNull(NewCharacterScreen);
     }
 
     private void Start()
@@ -28,6 +32,7 @@ public class ShopSceneUI : MonoBehaviour
             GameDataManager.Instance.AddUnlockedCharacter(unlockedCharacter);
             GameDataManager.Instance.Save();
             SetUpUI();
+            ShowNewCharacterScreen(unlockedCharacter);
         }
     }
 
@@ -38,10 +43,21 @@ public class ShopSceneUI : MonoBehaviour
         SetUpUI();
     }
 
+    public void HideNewCharacterScreen()
+    {
+        NewCharacterScreen.gameObject.SetActive(false);
+    }
+    
+    private void ShowNewCharacterScreen(CharacterData character)
+    {
+        NewCharacterScreen.SetCharacter(character);
+        NewCharacterScreen.gameObject.SetActive(true);
+    }
+
     private void SetUpUI()
     {
         RollButton.interactable = GameDataManager.Instance.GameData.PremiumCurrency >= Constants.GachaCost;
-        PremiumCurrencyText.text = $"{Constants.PremiumCurrencyName}: {GameDataManager.Instance.GameData.PremiumCurrency}";
-        RollCostText.text = $"-${Constants.GachaCost}";
+        PremiumCurrencyText.text = $"{GameDataManager.Instance.GameData.PremiumCurrency} {Constants.PremiumCurrencyName}";
+        RollCostText.text = $"${Constants.GachaCost}";
     }
 }

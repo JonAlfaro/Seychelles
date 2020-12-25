@@ -13,6 +13,6 @@ public class BattleSceneUI : MonoBehaviour
 
     private void Start()
     {
-        PremiumCurrencyText.text = $"{Constants.PremiumCurrencyName}: {GameDataManager.Instance.GameData.PremiumCurrency}";
+        PremiumCurrencyText.text = $"{GameDataManager.Instance.GameData.PremiumCurrency} {Constants.PremiumCurrencyName}";
     }
 }
