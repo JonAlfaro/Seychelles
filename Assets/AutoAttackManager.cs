@@ -3,10 +3,12 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 public class AutoAttackManager : MonoBehaviour
 {
     public MobManager mobManager;
+    public UnityEvent OnAutoAttack = new UnityEvent();
     private CharacterData[] Characters;
     private float AutoAttackInterval = 0.5f;
 
@@ -58,8 +60,8 @@ public class AutoAttackManager : MonoBehaviour
             {
                 AttackingEnemyIndex = 0;
             }
-
-            // TODO Emit an event that the attack has happened so that we can update if characters have died etc.
+            
+            OnAutoAttack.Invoke();
             
             yield return new WaitForSeconds(AutoAttackInterval);
         }
