@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -20,9 +21,9 @@ public class FloorManager : MonoBehaviour
 
     private double[] _halfLifeDifficultyIncrease = new double[] {0.1, 0.2, 0.3, 0.4, 0.5, 0.5};
 
-    public Sprite[] backgrounds = new Sprite[] { };
+    public Floor[] floors = new Floor[] { };
 
-    public SpriteRenderer currentBackground;
+    public Floor currentFloor;
     // Enemies Per Floor
     public List<int> _ePerFloor = new List<int> {2, 3, 4, 2, 3,};
     public Color hueShift = Color.white;
@@ -31,7 +32,7 @@ public class FloorManager : MonoBehaviour
 
     void Start()
     {
-        currentBackground.enabled = true;
+        currentFloor = Instantiate(floors[0]);
         if (floorChange == null)
             floorChange = new UnityEvent();
     }
@@ -69,12 +70,14 @@ public class FloorManager : MonoBehaviour
             _level++;
             Shuffle(_ePerFloor);
             // Change Background
-            currentBackground.sprite = backgrounds[_level%backgrounds.Length];
-            hueShift = new Color(
-                URandom.Range(0f, 1f), 
-                URandom.Range(0f, 1f), 
-                URandom.Range(0f, 1f)
-            );
+            Destroy(currentFloor.gameObject);
+            currentFloor = Instantiate(floors[_level%floors.Length]);
+            
+            // hueShift = new Color(
+            //     URandom.Range(0f, 1f), 
+            //     URandom.Range(0f, 1f), 
+            //     URandom.Range(0f, 1f)
+            // );
         }
         
         floorChange.Invoke();

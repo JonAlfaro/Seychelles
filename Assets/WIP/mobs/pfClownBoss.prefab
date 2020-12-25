@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 14804721886302647, guid: dea9ffac491cdaa4e9b079f86054aa02, type: 3}
       propertyPath: m_Name
-      value: pfDudeMob 1
+      value: pfClownBoss
       objectReference: {fileID: 0}
     - target: {fileID: 819500212724589236, guid: dea9ffac491cdaa4e9b079f86054aa02, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54,6 +54,18 @@ PrefabInstance:
     - target: {fileID: 819500212724589236, guid: dea9ffac491cdaa4e9b079f86054aa02, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5275178024596117800, guid: dea9ffac491cdaa4e9b079f86054aa02, type: 3}
+      propertyPath: m_Size.y
+      value: 8.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 5275178024596117800, guid: dea9ffac491cdaa4e9b079f86054aa02, type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5275178024596117800, guid: dea9ffac491cdaa4e9b079f86054aa02, type: 3}
+      propertyPath: m_Size.x
+      value: 6.8
       objectReference: {fileID: 0}
     - target: {fileID: 5977689513717121841, guid: dea9ffac491cdaa4e9b079f86054aa02, type: 3}
       propertyPath: m_LocalScale.x
