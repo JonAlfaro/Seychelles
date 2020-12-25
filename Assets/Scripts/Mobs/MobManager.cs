@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -21,11 +23,29 @@ public class CurrentLevelMob
     public Mob MobInfo;
     public Image HealthBar;
     public int MaxHealth;
-
+    public Vector3 BoundingSize;
+    public GameObject MobRef;
+    private Vector3 _trueStartPosition;
+    private Vector3 _startPosition;
+    private float _step = 1f;
     public CurrentLevelMob(GameObject mob)
     {
         Mob = mob;
+        var pos = Mob.transform.position;
+        _startPosition = pos;
+        pos.x -= 10;
+        _trueStartPosition = pos;
         MobInfo = Mob.GetComponent<Mob>();
+    }
+
+    public bool Move()
+    {
+        if (_step < 0f)
+            return false;
+        Vector3 interpolatedPosition = Vector3.Lerp(_trueStartPosition, _startPosition, _step);
+        _step -= 0.01f;
+        Mob.transform.position = interpolatedPosition;
+        return true;
     }
 }
 
@@ -44,9 +64,9 @@ public class MobManager : MonoBehaviour
     public Canvas gameCanvas;
     public Image gameHealthBar;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        SetFloorMobs();
+        SetFloorMobs(0);
     }
 
     // Update is called once per frame
@@ -54,16 +74,31 @@ public class MobManager : MonoBehaviour
     {
         
     }
+    
+    void FixedUpdate()
+    {
+        UpdateHealthBarPos();
+        if (flrManager.currentFloor.panning)
+        {
+            flrManager.currentFloor.panning = false;
+            foreach (var cMob in currentMobs)
+            {
+                var moved  = cMob.Move();
+                if (moved)
+                    flrManager.currentFloor.panning = true;
+            }
+        }
+    }
 
-    public void SetFloorMobs()
+    public void SetFloorMobs(float adjustX)
     {
         Debug.Log("flrManager._level-1 % MobsPerLevel.Length = "+ (flrManager._level-1) % MobsPerLevel.Length);
         levelMobs = MobsPerLevel[(flrManager._level-1) % MobsPerLevel.Length].Mobs;
         levelBoss = MobsPerLevel[(flrManager._level-1) % MobsPerLevel.Length].Boss;
-        SpawnMobs();
+        SpawnMobs(adjustX);
     }
 
-    public void SpawnMobs()
+    public void SpawnMobs(float adjustX)
     {
         // Destroy Exisiting gb
         foreach (var mob in currentMobs)
@@ -81,23 +116,28 @@ public class MobManager : MonoBehaviour
             for (int i = 0; i < flrManager._ePerFloor[flrManager._floor-1]; i++)
             {
                 var mob = levelMobs[Random.Range(0, levelMobs.Length)];
-                currentMobs.Add(new CurrentLevelMob(Instantiate(mob, mobSpawnPoints[_mobSpawnIndx].transform.position, Quaternion.identity)));
-                var mobBody = Instantiate(currentMobs[i].MobInfo.MobBody, currentMobs[i].Mob.transform.position,
+                var spawnPos = mobSpawnPoints[_mobSpawnIndx].transform.position;
+                spawnPos.x += adjustX;
+                currentMobs.Add(new CurrentLevelMob(Instantiate(mob, spawnPos, Quaternion.identity)));
+                currentMobs[i].MobRef = Instantiate(currentMobs[i].MobInfo.MobBody, currentMobs[i].Mob.transform.position,
                     Quaternion.identity);
-                mobBody.transform.parent = currentMobs[i].Mob.transform;
-                mobBody.GetComponentInChildren<SpriteRenderer>().color = flrManager.hueShift;
+                currentMobs[i].MobRef.transform.parent = currentMobs[i].Mob.transform;
+                // currentMobs[i].MobRef.GetComponentInChildren<SpriteRenderer>().color = flrManager.hueShift;
                 currentMobs[i].HealthBar = Instantiate(gameHealthBar, gameCanvas.transform);
+                currentMobs[i].BoundingSize = currentMobs[i].MobRef.GetComponent<BoxCollider>().bounds.size;
+
                 
                 // Move health bar to correct location on Canvas
                 // Only Fired Once, so it'll probably break if resolution changes mid-game
-                var mobPos = mobBody.transform.position;
+                var mobPos = currentMobs[i].MobRef.transform.position;
                 currentMobs[i].HealthBar.transform.position = playerCam.WorldToScreenPoint(
                     new Vector3(
                         mobPos.x,
-                        mobPos.y + (mobBody.GetComponent<BoxCollider>().bounds.size.y/2) +0.5f,
+                        mobPos.y + (currentMobs[i].BoundingSize.y/2) +0.5f,
                         mobPos.z
                     )
                 );
+
 
                 currentMobs[i].HealthBar.enabled = true;
 
@@ -112,18 +152,20 @@ public class MobManager : MonoBehaviour
         else
         {
             currentMobs.Add(new CurrentLevelMob(Instantiate(levelBoss, bossSpawnPoint.transform.position, Quaternion.identity)));
-            var mobBody = Instantiate(levelBoss.GetComponent<Mob>().MobBody, levelBoss.transform.position,
+            currentMobs.Last().MobRef = Instantiate(levelBoss.GetComponent<Mob>().MobBody, levelBoss.transform.position,
                 Quaternion.identity);
-            mobBody.transform.parent = currentMobs.Last().Mob.transform;
+            currentMobs.Last().MobRef.transform.parent = currentMobs.Last().Mob.transform;
             currentMobs.Last().HealthBar = Instantiate(gameHealthBar, gameCanvas.transform);
+            currentMobs.Last().BoundingSize =  currentMobs.Last().MobRef.GetComponent<BoxCollider>().bounds.size;
+
                 
             // Move health bar to correct location on Canvas
             // Only Fired Once, so it'll probably break if resolution changes mid-game
-            var mobPos = mobBody.transform.position;
+            var mobPos = currentMobs.Last().MobRef.transform.position;
             currentMobs.Last().HealthBar.transform.position = playerCam.WorldToScreenPoint(
                 new Vector3(
                     mobPos.x,
-                    mobPos.y + (mobBody.GetComponent<BoxCollider>().bounds.size.y/2) +0.5f,
+                    mobPos.y + (currentMobs.Last().BoundingSize.y/2) +0.5f,
                     mobPos.z
                 )
             );
@@ -135,10 +177,25 @@ public class MobManager : MonoBehaviour
             // Save record of max health
             currentMobs.Last().MaxHealth = currentMobs.Last().MobInfo.Health;
             
-            mobBody.GetComponentInChildren<SpriteRenderer>().color = flrManager.hueShift;
+            // currentMobs.Last().MobRef.GetComponentInChildren<SpriteRenderer>().color = flrManager.hueShift;
         }
     }
 
+    public void UpdateHealthBarPos()
+    {
+        foreach (var cMob in currentMobs)
+        {
+            var mobPos = cMob.MobRef.transform.position;
+            cMob.HealthBar.transform.position = playerCam.WorldToScreenPoint(
+                new Vector3(
+                    mobPos.x,
+                    mobPos.y + (cMob.BoundingSize.y/2) +0.5f,
+                    mobPos.z
+                )
+            );
+
+        }
+    }
     public void AttackRandomAlive(int dmg)
     {
         var aliveIndex = GetAliveMobIndexes();
@@ -169,6 +226,17 @@ public class MobManager : MonoBehaviour
         currentMobs[mobIndex].MobInfo.Shake();
         float healthMissing = currentMobs[mobIndex].MaxHealth - currentMobs[mobIndex].MobInfo.Health;
         currentMobs[mobIndex].HealthBar.fillAmount = 1f - (healthMissing / currentMobs[mobIndex].MaxHealth);
+
+        CheckNewFloor();
+    }
+
+    public void CheckNewFloor()
+    {
+        if (GetAliveMobIndexes().Count > 0)
+            return;
+
+        flrManager.currentFloor.panning = true;
+        SetFloorMobs(10);
     }
 
 }

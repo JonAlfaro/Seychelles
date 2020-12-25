@@ -39,12 +39,6 @@ public class FloorManager : MonoBehaviour
 
     void Update()
     {
-        // Shake
-        if (Input.GetKeyDown("z"))
-        {
-            mobManager.currentMobs[1].MobInfo.Shake();   
-        }
-
         // if (Input.GetKeyDown("space"))
         // {
         //     NextFloor();
