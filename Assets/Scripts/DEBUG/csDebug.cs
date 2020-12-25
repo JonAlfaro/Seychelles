@@ -17,8 +17,7 @@ public class csDebug : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            var mobIndex = mobManager.currentMobs.Count;
-            mobManager.AttackMob(mobIndex-1, 1);
+            mobManager.AttackRandomAlive(1);
         }
     }
     
