@@ -8,9 +8,9 @@ using UnityEngine.Events;
 public class AutoAttackManager : MonoBehaviour
 {
     public MobManager mobManager;
-    public UnityEvent OnAutoAttack = new UnityEvent();
+    public UnityEvent<CharacterData> OnAutoAttack = new UnityEvent<CharacterData>();
     private CharacterData[] Characters;
-    private float AutoAttackInterval = 0.5f;
+    private float AutoAttackInterval = 0.8f;
 
     public int AttackingCharacterIndex { get; private set; } = 0;
     public int AttackingEnemyIndex { get; private set; } = 0;
@@ -51,9 +51,11 @@ public class AutoAttackManager : MonoBehaviour
                 attackingCharacter.CurrentHealth -= mobManager.currentMobs[AttackingEnemyIndex].MobInfo.Damage;
             }
 
+            // Get the index for the next character that will attack
             AttackingCharacterIndex = GetNextCharacterToAttack(AttackingCharacterIndex);
 
-            OnAutoAttack.Invoke();
+            // Emit the OnAutoAttack event with the character that attacked
+            OnAutoAttack.Invoke(attackingCharacter);
             
             yield return new WaitForSeconds(AutoAttackInterval);
         }

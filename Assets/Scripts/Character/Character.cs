@@ -7,11 +7,15 @@ public class Character : MonoBehaviour
 {
     public CharacterData CharacterData;
     public Image CharacterImage;
+    public Animator Animator;
 
     private void Awake()
     {
+        Animator = GetComponent<Animator>();
+        
         CharacterImage = GetComponent<Image>();
         Assert.IsNotNull(CharacterImage);
+        Assert.IsNotNull(Animator);
     }
 
     public void SetCharacter(CharacterData data)
@@ -36,8 +40,21 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void OnDamageTaken()
+    {
+        
+        if (CharacterData.CurrentHealth <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            Animator.Play("Character Damage");
+        }
+    }
+
     private void Die()
     {
-        CharacterImage.color = Constants.DeadColor;
+        Animator.Play("Character Death");
     }
 }

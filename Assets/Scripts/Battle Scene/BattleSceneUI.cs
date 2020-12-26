@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 
@@ -20,5 +21,10 @@ public class BattleSceneUI : MonoBehaviour
         {
             Characters[i].SetCharacter(GameDataManager.Instance.GameData.SelectedCharacters[i]);
         }
+    }
+
+    public void OnCharacterAttacked(CharacterData characterData)
+    {
+        Characters.First(character => character?.CharacterData?.Id == characterData.Id)?.OnDamageTaken();
     }
 }
