@@ -268,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 146710061}
   - component: {fileID: 146710060}
+  - component: {fileID: 146710062}
   m_Layer: 0
   m_Name: BattleSceneUI
   m_TagString: Untagged
@@ -307,6 +308,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &146710062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146710059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea884ed18ed9c649a45bfe047ff4f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 239989152}
+  TargetPositions:
+  - {fileID: 579473693}
+  - {fileID: 499095583}
+  - {fileID: 1987129038}
+  - {fileID: 1781660147}
+  AutoAttackManager: {fileID: 972787742}
 --- !u!1 &178952185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,6 +1144,7 @@ GameObject:
   - component: {fileID: 681708249}
   - component: {fileID: 681708248}
   - component: {fileID: 681708251}
+  - component: {fileID: 681708252}
   m_Layer: 5
   m_Name: Character 4
   m_TagString: Untagged
@@ -1164,6 +1185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterImage: {fileID: 681708249}
+  Animator: {fileID: 0}
 --- !u!114 &681708249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1216,6 +1238,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 1
+--- !u!95 &681708252
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681708246}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63b10fb14d6171d439a9dfb6b08e5408, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &708594481
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,6 +1352,7 @@ GameObject:
   - component: {fileID: 778521476}
   - component: {fileID: 778521475}
   - component: {fileID: 778521478}
+  - component: {fileID: 778521479}
   m_Layer: 5
   m_Name: Character 3
   m_TagString: Untagged
@@ -1351,6 +1393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterImage: {fileID: 778521476}
+  Animator: {fileID: 0}
 --- !u!114 &778521476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1403,6 +1446,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 1
+--- !u!95 &778521479
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778521473}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63b10fb14d6171d439a9dfb6b08e5408, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &829256452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,7 +1796,6 @@ GameObject:
   - component: {fileID: 972787741}
   - component: {fileID: 972787740}
   - component: {fileID: 972787742}
-  - component: {fileID: 972787743}
   m_Layer: 0
   m_Name: StageManagers
   m_TagString: Untagged
@@ -1841,7 +1902,7 @@ MonoBehaviour:
   OnAutoAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 972787743}
+      - m_Target: {fileID: 146710062}
         m_TargetAssemblyTypeName: CurrentlyAttackingCharacterUI, Assembly-CSharp
         m_MethodName: UpdateTargetPosition
         m_Mode: 1
@@ -1853,25 +1914,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &972787743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972787738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea884ed18ed9c649a45bfe047ff4f1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 239989152}
-  TargetPositions:
-  - {fileID: 579473693}
-  - {fileID: 499095583}
-  - {fileID: 1987129038}
-  - {fileID: 1781660147}
-  AutoAttackManager: {fileID: 972787742}
+      - m_Target: {fileID: 146710060}
+        m_TargetAssemblyTypeName: BattleSceneUI, Assembly-CSharp
+        m_MethodName: OnCharacterAttacked
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1216940545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,6 +1999,7 @@ GameObject:
   - component: {fileID: 1254843048}
   - component: {fileID: 1254843047}
   - component: {fileID: 1254843050}
+  - component: {fileID: 1254843051}
   m_Layer: 5
   m_Name: Character 1
   m_TagString: Untagged
@@ -1969,7 +2024,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -531, y: -150}
+  m_AnchoredPosition: {x: -525, y: -150}
   m_SizeDelta: {x: 0, y: -984}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1254843047
@@ -1985,6 +2040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterImage: {fileID: 1254843048}
+  Animator: {fileID: 0}
 --- !u!114 &1254843048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2037,6 +2093,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 1
+--- !u!95 &1254843051
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254843045}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63b10fb14d6171d439a9dfb6b08e5408, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1275389593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,6 +2125,7 @@ GameObject:
   - component: {fileID: 1275389596}
   - component: {fileID: 1275389595}
   - component: {fileID: 1275389598}
+  - component: {fileID: 1275389599}
   m_Layer: 5
   m_Name: Character 2
   m_TagString: Untagged
@@ -2090,6 +2166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterImage: {fileID: 1275389596}
+  Animator: {fileID: 0}
 --- !u!114 &1275389596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2142,6 +2219,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 1
+--- !u!95 &1275389599
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275389593}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63b10fb14d6171d439a9dfb6b08e5408, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1427392725
 GameObject:
   m_ObjectHideFlags: 0
