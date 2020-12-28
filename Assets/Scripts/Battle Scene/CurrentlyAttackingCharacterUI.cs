@@ -22,6 +22,13 @@ public class CurrentlyAttackingCharacterUI : MonoBehaviour
     public void UpdateTargetPosition()
     {
         int positionIndex = AutoAttackManager.AttackingCharacterIndex;
+        if (positionIndex == -1)
+        {
+            Target.SetActive(false);
+            return;
+        }
+        
+        Target.SetActive(true);
         Transform targetPositionTransform = TargetPositions[positionIndex].transform;
         Target.transform.SetPositionAndRotation(targetPositionTransform.position, targetPositionTransform.rotation);
     }
