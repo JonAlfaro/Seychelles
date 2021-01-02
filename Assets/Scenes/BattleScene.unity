@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 146710061}
   - component: {fileID: 146710060}
   - component: {fileID: 146710062}
+  - component: {fileID: 146710063}
   m_Layer: 0
   m_Name: BattleSceneUI
   m_TagString: Untagged
@@ -327,6 +328,24 @@ MonoBehaviour:
   - {fileID: 1987129038}
   - {fileID: 1781660147}
   AutoAttackManager: {fileID: 972787742}
+--- !u!114 &146710063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146710059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43581e6f47efb25429509831530ad282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BattleSceneUI: {fileID: 146710060}
+  SkillButtons:
+  - {fileID: 1666124777}
+  - {fileID: 2056343790}
+  - {fileID: 2106553901}
+  - {fileID: 863786018}
 --- !u!1 &178952185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,7 +1594,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 863786019}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 972787743}
+        m_TargetAssemblyTypeName: CharacterSkillsManager, Assembly-CSharp
+        m_MethodName: UseSkill
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &863786019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1596,7 +1627,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a5d940efa83fbc1428585513a875a0fb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac90c4c3b54bf8740aed7be0d670f2fa, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1796,6 +1827,7 @@ GameObject:
   - component: {fileID: 972787741}
   - component: {fileID: 972787740}
   - component: {fileID: 972787742}
+  - component: {fileID: 972787743}
   m_Layer: 0
   m_Name: StageManagers
   m_TagString: Untagged
@@ -1926,6 +1958,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 146710063}
+        m_TargetAssemblyTypeName: CharacterSkillsUI, Assembly-CSharp
+        m_MethodName: UpdateSkillIconsEnabled
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &972787743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972787738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8ab0accc84a2a47bf894e515fc469f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MobManager: {fileID: 972787740}
+  BattleSceneUI: {fileID: 146710060}
 --- !u!1 &1216940545
 GameObject:
   m_ObjectHideFlags: 0
@@ -2652,7 +2710,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1666124778}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 972787743}
+        m_TargetAssemblyTypeName: CharacterSkillsManager, Assembly-CSharp
+        m_MethodName: UseSkill
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1666124778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2673,7 +2743,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 355669b654a7c4f41af184e029061b27, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac90c4c3b54bf8740aed7be0d670f2fa, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3147,7 +3217,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2056343791}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 972787743}
+        m_TargetAssemblyTypeName: CharacterSkillsManager, Assembly-CSharp
+        m_MethodName: UseSkill
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2056343791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3168,7 +3250,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ab81373d8196d004c97171a34c59009f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac90c4c3b54bf8740aed7be0d670f2fa, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3349,7 +3431,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2106553902}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 972787743}
+        m_TargetAssemblyTypeName: CharacterSkillsManager, Assembly-CSharp
+        m_MethodName: UseSkill
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2106553902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3370,7 +3464,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b852063a279d115439bf6b37947eb455, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac90c4c3b54bf8740aed7be0d670f2fa, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

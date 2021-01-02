@@ -7,8 +7,10 @@ public class SkillData
     public string IconName { get; set; }
     public EffectType EffectType { get; set; }
     public TargetType TargetType { get; set; }
+    public float AttackMultiplier { get; set; }
+    public float CoolDown { get; set; }
 
-    public SkillData(int id, string name, string description, string iconName, EffectType effectType, TargetType targetType)
+    public SkillData(int id, string name, string description, string iconName, EffectType effectType, TargetType targetType, float attackMultiplier, float coolDown)
     {
         Id = id;
         Name = name;
@@ -16,6 +18,8 @@ public class SkillData
         IconName = iconName;
         EffectType = effectType;
         TargetType = targetType;
+        AttackMultiplier = attackMultiplier;
+        CoolDown = coolDown;
     }
 }
 
@@ -31,6 +35,6 @@ public enum TargetType
     self,
     allyRandom,
     allyAOE,
-    enemy,
+    enemyRandom,
     enemyAOE,
 }

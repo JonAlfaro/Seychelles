@@ -10,8 +10,9 @@ public class CharacterData
     public int CurrentHealth { get; set; }
     public Rarity Rarity { get; set; }
     public int DuplicateLevel { get; set; }
+    public SkillData SkillData { get; set; }
 
-    public CharacterData(int id, int health, int attack, string name, string description, Rarity rarity)
+    public CharacterData(int id, int health, int attack, string name, string description, Rarity rarity, SkillData skillData)
     {
         Id = id;
         Name = name;
@@ -20,6 +21,7 @@ public class CharacterData
         Health = health;
         CurrentHealth = health;
         Rarity = rarity;
+        SkillData = skillData;
         Experience = 0;
         DuplicateLevel = 0;
     }
