@@ -40,9 +40,14 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void Damage(int damage)
+    {
+        CharacterData.Damage(damage);
+        OnDamageTaken();
+    }
+
     public void OnDamageTaken()
     {
-        
         if (CharacterData.CurrentHealth <= 0)
         {
             Die();

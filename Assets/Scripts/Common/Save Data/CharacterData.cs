@@ -1,4 +1,7 @@
-﻿[System.Serializable]
+﻿using System;
+using UnityEngine;
+
+[System.Serializable]
 public class CharacterData
 {
     public int Experience { get; set; }
@@ -24,6 +27,11 @@ public class CharacterData
         SkillData = skillData;
         Experience = 0;
         DuplicateLevel = 0;
+    }
+
+    public void Damage(int damage)
+    {
+        CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, Health);
     }
 }
 
