@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BattleSceneUI : MonoBehaviour
 {
     public Text PremiumCurrencyText;
+    public GameObject[] GameOverUI;
     public Character[] Characters;
 
     private void Awake()
@@ -26,5 +27,15 @@ public class BattleSceneUI : MonoBehaviour
     public void OnCharacterAttacked(CharacterData characterData)
     {
         Characters.First(character => character?.CharacterData?.Id == characterData.Id)?.OnDamageTaken();
+        SetGameOverUIActive();
+    }
+
+    private void SetGameOverUIActive()
+    {
+        bool allCharactersDead = Characters.All(character => character.CharacterData.CurrentHealth <= 0);
+        foreach (GameObject go in GameOverUI)
+        {
+            go.SetActive(allCharactersDead);
+        }
     }
 }
