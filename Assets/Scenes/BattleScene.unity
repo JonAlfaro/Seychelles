@@ -2051,6 +2051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoAttackMgr: {fileID: 972787742}
   charactersUI: {fileID: 274352001}
+  coin: {fileID: 6629894120416251233, guid: ae14e28471e150945961d61979c35dcc, type: 3}
   MobsPerLevel:
   - Boss: {fileID: 5451904574018854234, guid: 27f9d1cade579644da4db9203bb3477d, type: 3}
     Mobs:
