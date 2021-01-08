@@ -2050,6 +2050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoAttackMgr: {fileID: 972787742}
+  charactersUI: {fileID: 274352001}
   MobsPerLevel:
   - Boss: {fileID: 5451904574018854234, guid: 27f9d1cade579644da4db9203bb3477d, type: 3}
     Mobs:

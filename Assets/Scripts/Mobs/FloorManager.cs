@@ -28,8 +28,7 @@ public class FloorManager : MonoBehaviour
     // Enemies Per Floor
     public List<int> _ePerFloor = new List<int> {2, 3, 4, 2, 3,};
     public Color hueShift = Color.white;
-    
-   
+
 
     void Start()
     {
@@ -58,8 +57,6 @@ public class FloorManager : MonoBehaviour
         // Set floor back to 1
         _floor = 1;
         floorChange.Invoke();
-        
-        GetFloorLevel();
     } 
 
 

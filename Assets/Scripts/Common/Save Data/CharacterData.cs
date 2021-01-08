@@ -41,7 +41,7 @@ public class CharacterData
     {
         Experience += experience;
         
-        int experienceRequired = ExperienceLevel * 100;
+        int experienceRequired = (ExperienceLevel+1) * 100;
         if (Experience >= experienceRequired)
         {
             Experience = experience % experienceRequired;

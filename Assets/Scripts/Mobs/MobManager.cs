@@ -52,6 +52,7 @@ public class CurrentLevelMob
 public class MobManager : MonoBehaviour
 {
     public AutoAttackManager autoAttackMgr;
+    public GameObject charactersUI;
     
     public LevelMobs[] MobsPerLevel = new LevelMobs[] {};
     public GameObject[] levelMobs = new GameObject[] {};
@@ -255,6 +256,20 @@ public class MobManager : MonoBehaviour
         currentMobs[mobIndex].MobInfo.Shake();
         float healthMissing = currentMobs[mobIndex].MaxHealth - currentMobs[mobIndex].MobInfo.Health;
         currentMobs[mobIndex].HealthBar.fillAmount = 1f - (healthMissing / currentMobs[mobIndex].MaxHealth);
+        
+        // Calc Gold
+        var goldMultiplier = Random.Range(0.5f, 1.5f);
+        var gold = currentMobs[mobIndex].MaxHealth * goldMultiplier;
+        
+        var expMultiplier = Random.Range(0.5f, 1.5f);
+        var exp = currentMobs[mobIndex].MaxHealth * expMultiplier;
+        
+        foreach (var character in charactersUI.GetComponentsInChildren<Character>())
+        {
+            character.CharacterData.AddExperience((int)exp+50);
+        }
+        
+        GameDataManager.Instance.AddPremiumCurrency((int)gold+1);
 
         CheckNewFloor();
     }
