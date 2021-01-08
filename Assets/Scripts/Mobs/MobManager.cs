@@ -264,7 +264,7 @@ public class MobManager : MonoBehaviour
         if (GetAliveMobIndexes().Count > 0)
             return;
 
-        autoAttackMgr.StopAutoAttacking(); // FIXME: clownroutine doesnt seem to stop
+        autoAttackMgr.StopAutoAttacking();
         flrManager.NextFloor();
     }
 

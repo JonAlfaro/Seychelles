@@ -11,6 +11,7 @@ public class AutoAttackManager : MonoBehaviour
     public UnityEvent<CharacterData> OnAutoAttack = new UnityEvent<CharacterData>();
     private CharacterData[] Characters;
     private float AutoAttackInterval = 0.8f;
+    private Coroutine autoAttackCoroutine;
 
     public int AttackingCharacterIndex { get; private set; } = 0;
     public int AttackingEnemyIndex { get; private set; } = 0;
@@ -23,18 +24,22 @@ public class AutoAttackManager : MonoBehaviour
     void Start()
     {
         Characters = GameDataManager.Instance.GameData.SelectedCharacters;
-        StartCoroutine(AutoAttack());
+        autoAttackCoroutine = StartCoroutine(AutoAttack());
     }
 
     public void StartAutoAttacking()
     {
-        StopCoroutine(AutoAttack());
-        StartCoroutine(AutoAttack());
+        if (autoAttackCoroutine != null)
+        {
+            StopCoroutine(autoAttackCoroutine);
+        }
+        
+        autoAttackCoroutine = StartCoroutine(AutoAttack());
     }
     
     public void StopAutoAttacking()
     {
-        StopCoroutine(AutoAttack());
+        StopCoroutine(autoAttackCoroutine);
     }
 
     IEnumerator AutoAttack()
