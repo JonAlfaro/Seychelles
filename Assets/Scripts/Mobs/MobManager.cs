@@ -53,6 +53,7 @@ public class MobManager : MonoBehaviour
 {
     public AutoAttackManager autoAttackMgr;
     public GameObject charactersUI;
+    public GameObject coin;
     
     public LevelMobs[] MobsPerLevel = new LevelMobs[] {};
     public GameObject[] levelMobs = new GameObject[] {};
@@ -120,8 +121,8 @@ public class MobManager : MonoBehaviour
     public void HandleLevelChange()
     {
         // -1 because I'm dumb and levels start at 1
-        levelMobs = MobsPerLevel[flrManager._level - 1 % MobsPerLevel.Length].Mobs;
-        levelBoss = MobsPerLevel[flrManager._level - 1% MobsPerLevel.Length].Boss;
+        levelMobs = MobsPerLevel[(flrManager._level - 1) % MobsPerLevel.Length].Mobs;
+        levelBoss = MobsPerLevel[(flrManager._level - 1)% MobsPerLevel.Length].Boss;
         SpawnMobs(10);
         flrManager.currentFloor.panning = true;
     }
@@ -270,6 +271,12 @@ public class MobManager : MonoBehaviour
         }
         
         GameDataManager.Instance.AddPremiumCurrency((int)gold+1);
+
+        for (int i = 0; i < (int)(expMultiplier/0.1); i++)
+        {
+            Instantiate(coin, currentMobs[mobIndex].MobRef.transform.position, Quaternion.identity);
+        }
+        
 
         CheckNewFloor();
     }
