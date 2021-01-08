@@ -253,29 +253,32 @@ public class MobManager : MonoBehaviour
         {
             currentMobs[mobIndex].MobInfo.Health = 0;
             currentMobs[mobIndex].MobInfo.fadeAway = true;
+            
+            // Mob is dead, handle gold and exp
+            var goldMultiplier = Random.Range(0.5f, 1.5f);
+            var gold = currentMobs[mobIndex].MaxHealth * goldMultiplier;
+        
+            var expMultiplier = Random.Range(0.5f, 1.5f);
+            var exp = currentMobs[mobIndex].MaxHealth * expMultiplier;
+        
+            foreach (var character in charactersUI.GetComponentsInChildren<Character>())
+            {
+                character.CharacterData.AddExperience((int)exp+50);
+            }
+        
+            GameDataManager.Instance.AddPremiumCurrency((int)gold+1);
+
+            for (int i = 0; i < (int)(int)(expMultiplier/0.2); i++)
+            {
+                Instantiate(coin, currentMobs[mobIndex].MobRef.transform.position, Quaternion.identity);
+            }
+            
         }
         currentMobs[mobIndex].MobInfo.Shake();
         float healthMissing = currentMobs[mobIndex].MaxHealth - currentMobs[mobIndex].MobInfo.Health;
         currentMobs[mobIndex].HealthBar.fillAmount = 1f - (healthMissing / currentMobs[mobIndex].MaxHealth);
         
-        // Calc Gold
-        var goldMultiplier = Random.Range(0.5f, 1.5f);
-        var gold = currentMobs[mobIndex].MaxHealth * goldMultiplier;
-        
-        var expMultiplier = Random.Range(0.5f, 1.5f);
-        var exp = currentMobs[mobIndex].MaxHealth * expMultiplier;
-        
-        foreach (var character in charactersUI.GetComponentsInChildren<Character>())
-        {
-            character.CharacterData.AddExperience((int)exp+50);
-        }
-        
-        GameDataManager.Instance.AddPremiumCurrency((int)gold+1);
 
-        for (int i = 0; i < (int)(expMultiplier/0.1); i++)
-        {
-            Instantiate(coin, currentMobs[mobIndex].MobRef.transform.position, Quaternion.identity);
-        }
         
 
         CheckNewFloor();
