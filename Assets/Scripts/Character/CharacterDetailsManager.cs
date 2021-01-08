@@ -11,6 +11,9 @@ public class CharacterDetailsManager : MonoBehaviour
     public Text SelectedCharacterNameText;
     public Text SelectedCharacterDescriptionText;
     public Text SelectedCharacterDuplicateText;
+    public Text SelectedCharacterAttackText;
+    public Text SelectedCharacterHealthText;
+    public Text SelectedCharacterLevelText;
     public Button SelectCharacterButton;
     public GameObject CharacterSelectScreen;
     public GameObject CharacterGrid;
@@ -108,10 +111,20 @@ public class CharacterDetailsManager : MonoBehaviour
     private void OnCharacterSelected(CharacterData character)
     {
         selectedCharacter = character;
-        SelectedCharacterNameText.text = character?.Name;
-        SelectedCharacterDescriptionText.text = character?.Description;
-        SelectedCharacterDuplicateText.text = character != null ? $"Duplicate level: {character.DuplicateLevel}" : "";
         SelectCharacterButton.interactable = selectedCharacter != null;
+        if (character == null)
+        {
+            return;
+        }
+        
+        SelectedCharacterNameText.text = character.Name;
+        SelectedCharacterDescriptionText.text = $"{character.Description}" +
+                                                $"\n\nSkill: {character.SkillData.Name}" +
+                                                $"\n\n{character.SkillData.Description}";
+        SelectedCharacterAttackText.text = $"Atk: {character.Attack}";
+        SelectedCharacterHealthText.text = $"HP: {character.CurrentHealth}/{character.Health}";
+        SelectedCharacterDuplicateText.text = $"Duplicate: {character.DuplicateLevel}";
+        SelectedCharacterLevelText.text = $"Level: {character.ExperienceLevel}";
     }
 
     private void SetCharacterSelectUIs()
