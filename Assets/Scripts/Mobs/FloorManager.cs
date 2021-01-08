@@ -13,6 +13,7 @@ public class FloorManager : MonoBehaviour
 {
     public MobManager mobManager;
     public UnityEvent floorChange;
+    public UnityEvent levelChange;
 
     // 6 floors per level
     public int _floor = 1;
@@ -51,6 +52,15 @@ public class FloorManager : MonoBehaviour
         //     Debug.Log("_ePerFloor = " + z);
         // }
     }
+    
+    public void ResetLevel()
+    {
+        // Set floor back to 1
+        _floor = 1;
+        floorChange.Invoke();
+        
+        GetFloorLevel();
+    } 
 
 
     public Tuple<int, int> NextFloor()
@@ -72,9 +82,14 @@ public class FloorManager : MonoBehaviour
             //     URandom.Range(0f, 1f), 
             //     URandom.Range(0f, 1f)
             // );
+            levelChange.Invoke();
+        }
+        else
+        {
+            floorChange.Invoke(); 
         }
         
-        floorChange.Invoke();
+        
 
         return GetFloorLevel();
     }

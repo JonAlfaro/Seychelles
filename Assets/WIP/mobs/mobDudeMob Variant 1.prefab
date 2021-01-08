@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 8697467034536507149, guid: 1a34378d409154b45b2162262f5ecde9, type: 3}
     - target: {fileID: 514526405133456902, guid: 9fef4d2eca11a7240ba7e9b60de139df, type: 3}
       propertyPath: Health
-      value: 15
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 514526405133456902, guid: 9fef4d2eca11a7240ba7e9b60de139df, type: 3}
       propertyPath: Damage
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6335402341221356120, guid: 9fef4d2eca11a7240ba7e9b60de139df, type: 3}
       propertyPath: m_LocalPosition.x

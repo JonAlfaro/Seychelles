@@ -794,7 +794,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 486625311}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 972787741}
+        m_TargetAssemblyTypeName: FloorManager, Assembly-CSharp
+        m_MethodName: ResetLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &499095583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,6 +1998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01cdbca44eb5bf48bde63ad7e6520b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoAttackMgr: {fileID: 972787742}
   MobsPerLevel:
   - Boss: {fileID: 5451904574018854234, guid: 27f9d1cade579644da4db9203bb3477d, type: 3}
     Mobs:
@@ -2026,7 +2039,22 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 972787740}
         m_TargetAssemblyTypeName: MobManager, Assembly-CSharp
-        m_MethodName: SetFloorMobs
+        m_MethodName: HandleFloorChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  levelChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 972787740}
+        m_TargetAssemblyTypeName: MobManager, Assembly-CSharp
+        m_MethodName: HandleLevelChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

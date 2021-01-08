@@ -51,6 +51,8 @@ public class CurrentLevelMob
 
 public class MobManager : MonoBehaviour
 {
+    public AutoAttackManager autoAttackMgr;
+    
     public LevelMobs[] MobsPerLevel = new LevelMobs[] {};
     public GameObject[] levelMobs = new GameObject[] {};
     public GameObject levelBoss;
@@ -83,19 +85,44 @@ public class MobManager : MonoBehaviour
             flrManager.currentFloor.panning = false;
             foreach (var cMob in currentMobs)
             {
-                var moved  = cMob.Move();
-                if (moved)
+                if (cMob.Move())
                     flrManager.currentFloor.panning = true;
+            }
+
+            // Resume Auto Attack, after pan
+            if (!flrManager.currentFloor.panning)
+            {
+                autoAttackMgr.StartAutoAttacking();
             }
         }
     }
 
     public void SetFloorMobs(float adjustX)
     {
-        Debug.Log("flrManager._level-1 % MobsPerLevel.Length = "+ (flrManager._level-1) % MobsPerLevel.Length);
-        levelMobs = MobsPerLevel[(flrManager._level-1) % MobsPerLevel.Length].Mobs;
-        levelBoss = MobsPerLevel[(flrManager._level-1) % MobsPerLevel.Length].Boss;
+        // Debug.Log("flrManager._level-1 % MobsPerLevel.Length = "+ (flrManager._level-1) % MobsPerLevel.Length);
+        SetFloorMobsAndLevel(adjustX, flrManager._level);
+    }
+    
+    public void SetFloorMobsAndLevel(float adjustX, int level)
+    {
+        levelMobs = MobsPerLevel[(level) % MobsPerLevel.Length].Mobs;
+        levelBoss = MobsPerLevel[(level) % MobsPerLevel.Length].Boss;
         SpawnMobs(adjustX);
+    }
+
+    public void HandleFloorChange()
+    {
+        SpawnMobs(10);
+        flrManager.currentFloor.panning = true;
+    }
+
+    public void HandleLevelChange()
+    {
+        // -1 because I'm dumb and levels start at 1
+        levelMobs = MobsPerLevel[flrManager._level - 1 % MobsPerLevel.Length].Mobs;
+        levelBoss = MobsPerLevel[flrManager._level - 1% MobsPerLevel.Length].Boss;
+        SpawnMobs(10);
+        flrManager.currentFloor.panning = true;
     }
 
     public void SpawnMobs(float adjustX)
@@ -151,8 +178,10 @@ public class MobManager : MonoBehaviour
         }
         else
         {
-            currentMobs.Add(new CurrentLevelMob(Instantiate(levelBoss, bossSpawnPoint.transform.position, Quaternion.identity)));
-            currentMobs.Last().MobRef = Instantiate(levelBoss.GetComponent<Mob>().MobBody, levelBoss.transform.position,
+            var spawnPos = bossSpawnPoint.transform.position;
+            spawnPos.x += adjustX;
+            currentMobs.Add(new CurrentLevelMob(Instantiate(levelBoss, spawnPos, Quaternion.identity)));
+            currentMobs.Last().MobRef = Instantiate(currentMobs.Last().MobInfo.MobBody, currentMobs.Last().Mob.transform.position,
                 Quaternion.identity);
             currentMobs.Last().MobRef.transform.parent = currentMobs.Last().Mob.transform;
             currentMobs.Last().HealthBar = Instantiate(gameHealthBar, gameCanvas.transform);
@@ -235,8 +264,8 @@ public class MobManager : MonoBehaviour
         if (GetAliveMobIndexes().Count > 0)
             return;
 
-        flrManager.currentFloor.panning = true;
-        SetFloorMobs(10);
+        autoAttackMgr.StopAutoAttacking(); // FIXME: clownroutine doesnt seem to stop
+        flrManager.NextFloor();
     }
 
 }
