@@ -38,4 +38,14 @@ public class BattleSceneUI : MonoBehaviour
             go.SetActive(allCharactersDead);
         }
     }
+
+    public void ResetCharacterHealth()
+    {
+        foreach (Character character in Characters)
+        {
+            character.ResetHealth();
+        }
+        
+        GameDataManager.Instance.Save();
+    }
 }

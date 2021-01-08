@@ -17,11 +17,11 @@ public class GameDataManager : MonoBehaviour
     {
         if (GameData.UnlockedCharacters.Any(c => c.Id == character.Id))
         {
-            GameData.UnlockedCharacters.First(c => c.Id == character.Id).DuplicateLevel += 1;
+            GameData.UnlockedCharacters.First(c => c.Id == character.Id).AddDuplicate();
         }
         else if (GameData.SelectedCharacters.Any(c => c.Id == character.Id))
         {
-            GameData.SelectedCharacters.First(c => c.Id == character.Id).DuplicateLevel += 1;
+            GameData.SelectedCharacters.First(c => c.Id == character.Id).AddDuplicate();
         }
         else
         {
@@ -29,6 +29,11 @@ public class GameDataManager : MonoBehaviour
             charactersList.Add(character);
             GameData.UnlockedCharacters = charactersList.ToArray();
         }
+    }
+
+    public void AddPremiumCurrency(int amount)
+    {
+        GameData.PremiumCurrency += amount;
     }
 
     void Awake()

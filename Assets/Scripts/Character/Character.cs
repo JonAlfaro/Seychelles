@@ -45,6 +45,12 @@ public class Character : MonoBehaviour
         CharacterData.Damage(damage);
         OnDamageTaken();
     }
+    
+    public void ResetHealth()
+    {
+        CharacterData.CurrentHealth = CharacterData.Health;
+        Animator.Play("Character Idle");
+    }
 
     public void OnDamageTaken()
     {
