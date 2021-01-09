@@ -30,11 +30,35 @@ public class FloorManager : MonoBehaviour
     public Color hueShift = Color.white;
 
 
-    void Start()
+    private void Awake()
     {
+        
+        // Handle save files that dont have level
+        if (GameDataManager.Instance.GameData.Level == 0)
+        {
+            GameDataManager.Instance.GameData.Level = 1;
+            GameDataManager.Instance.Save();
+        }
+        
+        // Handle save files that dont have floor
+        if (GameDataManager.Instance.GameData.Floor == 0)
+        {
+            GameDataManager.Instance.GameData.Floor = 1;
+            GameDataManager.Instance.Save();
+        }
+
+        
+        _level = GameDataManager.Instance.GameData.Level;
+        _floor = GameDataManager.Instance.GameData.Floor;
+        
         currentFloor = Instantiate(floors[0]);
         if (floorChange == null)
             floorChange = new UnityEvent();
+    }
+
+    void Start()
+    {
+        
     }
 
     void Update()
@@ -56,6 +80,8 @@ public class FloorManager : MonoBehaviour
     {
         // Set floor back to 1
         _floor = 1;
+        GameDataManager.Instance.GameData.Floor = _floor;
+        GameDataManager.Instance.Save();
         floorChange.Invoke();
     } 
 
@@ -80,11 +106,17 @@ public class FloorManager : MonoBehaviour
             //     URandom.Range(0f, 1f)
             // );
             levelChange.Invoke();
+            
+            // Save New Level
+            GameDataManager.Instance.GameData.Level = _level;
         }
         else
         {
+            GameDataManager.Instance.GameData.Floor = _floor;
             floorChange.Invoke(); 
         }
+        
+        GameDataManager.Instance.Save();
         
         
 
