@@ -5450,6 +5450,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1905293539}
     m_Modifications:
+    - target: {fileID: 4076689365634849446, guid: cb1c7f0812d54c946a051981512fde87, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeSceneTo
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076689365634849446, guid: cb1c7f0812d54c946a051981512fde87, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: BattleScene
+      objectReference: {fileID: 0}
     - target: {fileID: 4076689365634849464, guid: cb1c7f0812d54c946a051981512fde87, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

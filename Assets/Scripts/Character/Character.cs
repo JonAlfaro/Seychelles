@@ -64,6 +64,11 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void StartSkillCooldown()
+    {
+        CharacterData.SkillData.CurrentCoolDown = CharacterData.SkillData.CoolDown;
+    }
+
     private void Die()
     {
         Animator.Play("Character Death");

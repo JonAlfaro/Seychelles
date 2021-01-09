@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Coffee.UIEffects;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -13,6 +14,11 @@ public class CharacterSkillsUI : MonoBehaviour
     private void Awake()
     {
         Assert.IsNotNull(BattleSceneUI);
+    }
+
+    private void LateUpdate()
+    {
+        UpdateSkillIconsEnabled();
     }
 
     void Start()
@@ -49,14 +55,14 @@ public class CharacterSkillsUI : MonoBehaviour
         {
             SkillButtons[i].interactable = BattleSceneUI.Characters[i] != null
                                            && BattleSceneUI.Characters[i].CharacterData.CurrentHealth > 0
-                                           && BattleSceneUI.Characters[i].CharacterData.SkillData.CurrentCoolDown == 0;
+                                           && BattleSceneUI.Characters[i].CharacterData.SkillData.CurrentCoolDown <= 0;
         }
     }
 
     public void StartSkillCooldown(int index)
     {
         // Assumes the buttons and characters share the same index in their arrays
-        skillButtonUIDissolves[index].effectPlayer.duration = BattleSceneUI.Characters[index].CharacterData.SkillData.CoolDown;
+        skillButtonUIDissolves[index].effectPlayer.duration = BattleSceneUI.Characters[index].CharacterData.SkillData.CurrentCoolDown;
         skillButtonUIDissolves[index].Play(true);
     }
 }

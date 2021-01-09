@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Random = UnityEngine.Random;
@@ -14,6 +15,17 @@ public class CharacterSkillsManager : MonoBehaviour
         Assert.IsNotNull(BattleSceneUI);
     }
 
+    private void Update()
+    {
+        foreach (Character character in BattleSceneUI.Characters)
+        {
+            if (character.CharacterData.SkillData.CurrentCoolDown > 0)
+            {
+                character.CharacterData.SkillData.CurrentCoolDown -= Time.deltaTime;
+            }
+        }
+    }
+
     public void UseSkill(int index)
     {
         CharacterData activeCharacter = BattleSceneUI.Characters[index].CharacterData;
@@ -23,6 +35,7 @@ public class CharacterSkillsManager : MonoBehaviour
                        * (activeCharacter.SkillData.EffectType == EffectType.heal ? -1 : 1);
         
         FindTargetsAndUseSkill(BattleSceneUI.Characters[index], Mathf.RoundToInt(damage));
+        BattleSceneUI.Characters[index].StartSkillCooldown();
     }
     
     private void FindTargetsAndUseSkill(Character activeCharacter, int damage)
