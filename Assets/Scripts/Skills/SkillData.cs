@@ -1,4 +1,6 @@
-﻿[System.Serializable]
+﻿using System.Collections;
+
+[System.Serializable]
 public class SkillData
 {
     public int Id { get; set; }
@@ -9,6 +11,7 @@ public class SkillData
     public TargetType TargetType { get; set; }
     public float AttackMultiplier { get; set; }
     public float CoolDown { get; set; }
+    public float CurrentCoolDown { get; set; }
 
     public SkillData(int id, string name, string description, string iconName, EffectType effectType, TargetType targetType, float attackMultiplier, float coolDown)
     {
@@ -20,6 +23,7 @@ public class SkillData
         TargetType = targetType;
         AttackMultiplier = attackMultiplier;
         CoolDown = coolDown;
+        CurrentCoolDown = 0;
     }
 }
 
