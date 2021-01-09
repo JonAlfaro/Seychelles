@@ -72,7 +72,10 @@ public class MobManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        SetFloorMobs(0);
+        levelMobs = MobsPerLevel[(flrManager._level - 1) % MobsPerLevel.Length].Mobs;
+        levelBoss = MobsPerLevel[(flrManager._level - 1)% MobsPerLevel.Length].Boss;
+        SpawnMobs(10);
+        flrManager.currentFloor.panning = true;
     }
 
     // Update is called once per frame
@@ -80,7 +83,11 @@ public class MobManager : MonoBehaviour
     {
         
     }
-    
+
+    private void Start()
+    {
+    }
+
     void FixedUpdate()
     {
         UpdateHealthBarPos();
@@ -281,9 +288,6 @@ public class MobManager : MonoBehaviour
         float healthMissing = currentMobs[mobIndex].MaxHealth - currentMobs[mobIndex].MobInfo.Health;
         currentMobs[mobIndex].HealthBar.fillAmount = 1f - (healthMissing / currentMobs[mobIndex].MaxHealth);
         
-
-        
-
         CheckNewFloor();
     }
 

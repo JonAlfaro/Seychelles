@@ -24,7 +24,6 @@ public class AutoAttackManager : MonoBehaviour
     void Start()
     {
         Characters = GameDataManager.Instance.GameData.SelectedCharacters;
-        StartAutoAttacking();
     }
 
     public void StartAutoAttacking()
@@ -44,7 +43,10 @@ public class AutoAttackManager : MonoBehaviour
     
     public void StopAutoAttacking()
     {
-        StopCoroutine(autoAttackCoroutine);
+        if (autoAttackCoroutine != null)
+        {
+            StopCoroutine(autoAttackCoroutine);
+        }
     }
 
     IEnumerator AutoAttack()

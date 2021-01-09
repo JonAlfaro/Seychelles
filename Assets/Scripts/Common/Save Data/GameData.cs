@@ -5,4 +5,8 @@ public class GameData
     public CharacterData[] UnlockedCharacters { get; set; }
     public string Name { get; set; }
     public int PremiumCurrency { get; set; }
+    
+    public int Level { get; set; }
+    
+    public int Floor { get; set; }
 }
