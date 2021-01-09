@@ -265,7 +265,7 @@ public class MobManager : MonoBehaviour
         
             foreach (var character in charactersUI.GetComponentsInChildren<Character>())
             {
-                character.CharacterData.AddExperience((int)exp+50);
+                character.CharacterData?.AddExperience((int)exp+50);
             }
         
             GameDataManager.Instance.AddPremiumCurrency((int)gold+1);

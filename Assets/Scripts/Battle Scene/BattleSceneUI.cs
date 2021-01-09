@@ -30,9 +30,9 @@ public class BattleSceneUI : MonoBehaviour
         SetGameOverUIActive();
     }
 
-    private void SetGameOverUIActive()
+    public void SetGameOverUIActive()
     {
-        bool allCharactersDead = Characters.All(character => character.CharacterData.CurrentHealth <= 0);
+        bool allCharactersDead = Characters.All(character => character.CharacterData == null || character.CharacterData.CurrentHealth <= 0);
         foreach (GameObject go in GameOverUI)
         {
             go.SetActive(allCharactersDead);

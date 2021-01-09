@@ -42,18 +42,24 @@ public class Character : MonoBehaviour
 
     public void Damage(int damage)
     {
+        if (CharacterData == null) return;
+        
         CharacterData.Damage(damage);
         OnDamageTaken();
     }
     
     public void ResetHealth()
     {
+        if (CharacterData == null) return;
+        
         CharacterData.CurrentHealth = CharacterData.Health;
         Animator.Play("Character Idle");
     }
 
     public void OnDamageTaken()
     {
+        if (CharacterData == null) return;
+        
         if (CharacterData.CurrentHealth <= 0)
         {
             Die();
@@ -66,11 +72,15 @@ public class Character : MonoBehaviour
 
     public void StartSkillCooldown()
     {
+        if (CharacterData == null) return;
+        
         CharacterData.SkillData.CurrentCoolDown = CharacterData.SkillData.CoolDown;
     }
 
     private void Die()
     {
+        if (CharacterData == null) return;
+        
         Animator.Play("Character Death");
     }
 }

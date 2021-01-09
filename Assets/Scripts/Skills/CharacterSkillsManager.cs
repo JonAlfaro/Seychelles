@@ -19,7 +19,7 @@ public class CharacterSkillsManager : MonoBehaviour
     {
         foreach (Character character in BattleSceneUI.Characters)
         {
-            if (character.CharacterData.SkillData.CurrentCoolDown > 0)
+            if (character.CharacterData != null && character.CharacterData.SkillData.CurrentCoolDown > 0)
             {
                 character.CharacterData.SkillData.CurrentCoolDown -= Time.deltaTime;
             }
