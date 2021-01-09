@@ -15,6 +15,11 @@ public class coin : MonoBehaviour
         rb.velocity = new Vector3(Random.Range(-3,-6), Random.Range(6,12));
     }
 
+    public void SetSize(float coinSize)
+    {
+        gameObject.transform.localScale += new Vector3(1+coinSize, 1+coinSize, 0);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -22,6 +27,7 @@ public class coin : MonoBehaviour
         srColor.a -= Time.fixedDeltaTime;
         if (srColor.a <= 0)
         {
+            Destroy(gameObject);
         }
         else
         {

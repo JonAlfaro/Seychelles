@@ -279,7 +279,7 @@ public class MobManager : MonoBehaviour
 
             for (int i = 0; i < (int)(int)(expMultiplier/0.2); i++)
             {
-                Instantiate(coin, currentMobs[mobIndex].MobRef.transform.position, Quaternion.identity);
+                Instantiate(coin, currentMobs[mobIndex].MobRef.transform.position, Quaternion.identity).GetComponent<coin>().SetSize(gold/100);
             }
             
             OnMobKilled.Invoke();
