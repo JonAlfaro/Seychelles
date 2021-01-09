@@ -17,7 +17,7 @@ public class BattleSceneUI : MonoBehaviour
 
     private void Start()
     {
-        PremiumCurrencyText.text = $"{GameDataManager.Instance.GameData.PremiumCurrency} {Constants.PremiumCurrencyName}";
+        UpdatePremiumCurrencyUIAmount();
         for (int i = 0; i < GameDataManager.Instance.GameData.SelectedCharacters.Length; i++)
         {
             Characters[i].SetCharacter(GameDataManager.Instance.GameData.SelectedCharacters[i]);
@@ -47,5 +47,10 @@ public class BattleSceneUI : MonoBehaviour
         }
         
         GameDataManager.Instance.Save();
+    }
+
+    public void UpdatePremiumCurrencyUIAmount()
+    {
+        PremiumCurrencyText.text = $"{GameDataManager.Instance.GameData.PremiumCurrency} {Constants.PremiumCurrencyName}";
     }
 }

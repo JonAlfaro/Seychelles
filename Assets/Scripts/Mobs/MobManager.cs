@@ -67,6 +67,8 @@ public class MobManager : MonoBehaviour
     public Camera playerCam;
     public Canvas gameCanvas;
     public Image gameHealthBar;
+
+    public UnityEvent OnMobKilled;
     // Start is called before the first frame update
     void Awake()
     {
@@ -273,6 +275,7 @@ public class MobManager : MonoBehaviour
                 Instantiate(coin, currentMobs[mobIndex].MobRef.transform.position, Quaternion.identity);
             }
             
+            OnMobKilled.Invoke();
         }
         currentMobs[mobIndex].MobInfo.Shake();
         float healthMissing = currentMobs[mobIndex].MaxHealth - currentMobs[mobIndex].MobInfo.Health;

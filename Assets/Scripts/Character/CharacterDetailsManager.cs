@@ -111,20 +111,28 @@ public class CharacterDetailsManager : MonoBehaviour
     private void OnCharacterSelected(CharacterData character)
     {
         selectedCharacter = character;
-        SelectCharacterButton.interactable = selectedCharacter != null;
-        if (character == null)
+        if (selectedCharacter != null)
         {
-            return;
+            SelectCharacterButton.interactable = true;
+            SelectedCharacterNameText.text = character.Name;
+            SelectedCharacterDescriptionText.text = $"{character.Description}" +
+                                                    $"\n\nSkill: {character.SkillData.Name}" +
+                                                    $"\n\n{character.SkillData.Description}";
+            SelectedCharacterAttackText.text = $"Atk: {character.Attack}";
+            SelectedCharacterHealthText.text = $"HP: {character.CurrentHealth}/{character.Health}";
+            SelectedCharacterDuplicateText.text = $"Duplicate: {character.DuplicateLevel}";
+            SelectedCharacterLevelText.text = $"Level: {character.ExperienceLevel}";
         }
-        
-        SelectedCharacterNameText.text = character.Name;
-        SelectedCharacterDescriptionText.text = $"{character.Description}" +
-                                                $"\n\nSkill: {character.SkillData.Name}" +
-                                                $"\n\n{character.SkillData.Description}";
-        SelectedCharacterAttackText.text = $"Atk: {character.Attack}";
-        SelectedCharacterHealthText.text = $"HP: {character.CurrentHealth}/{character.Health}";
-        SelectedCharacterDuplicateText.text = $"Duplicate: {character.DuplicateLevel}";
-        SelectedCharacterLevelText.text = $"Level: {character.ExperienceLevel}";
+        else
+        {
+            SelectCharacterButton.interactable = false;
+            SelectedCharacterNameText.text = "";
+            SelectedCharacterDescriptionText.text = "";
+            SelectedCharacterAttackText.text = "";
+            SelectedCharacterHealthText.text = "";
+            SelectedCharacterDuplicateText.text = "";
+            SelectedCharacterLevelText.text = "";
+        }
     }
 
     private void SetCharacterSelectUIs()
@@ -147,12 +155,14 @@ public class CharacterDetailsManager : MonoBehaviour
             characterSelectUI.AttackText.text = "";
             characterSelectUI.HealthText.text = "";
             characterSelectUI.NameText.text = "Select A Frog";
-            return;
         }
-        string imageResourceName = $"{characterData.Id.ToString()}{Constants.BremiumResourceSuffix}";
-        characterSelectUI.Image.sprite = Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, imageResourceName));
-        characterSelectUI.AttackText.text = $"ATK: {characterData.Attack.ToString()}";
-        characterSelectUI.HealthText.text = $"HP: {characterData.Health.ToString()}";
-        characterSelectUI.NameText.text = characterData.Name;
+        else
+        {
+            string imageResourceName = $"{characterData.Id.ToString()}{Constants.BremiumResourceSuffix}";
+            characterSelectUI.Image.sprite = Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, imageResourceName));
+            characterSelectUI.AttackText.text = $"ATK: {characterData.Attack.ToString()}";
+            characterSelectUI.HealthText.text = $"HP: {characterData.CurrentHealth}/{characterData.Health}";
+            characterSelectUI.NameText.text = characterData.Name;
+        }
     }
 }

@@ -24,7 +24,7 @@ public class AutoAttackManager : MonoBehaviour
     void Start()
     {
         Characters = GameDataManager.Instance.GameData.SelectedCharacters;
-        autoAttackCoroutine = StartCoroutine(AutoAttack());
+        StartAutoAttacking();
     }
 
     public void StartAutoAttacking()
@@ -32,6 +32,11 @@ public class AutoAttackManager : MonoBehaviour
         if (autoAttackCoroutine != null)
         {
             StopCoroutine(autoAttackCoroutine);
+        }
+
+        if (AttackingCharacterIndex == -1)
+        {
+            AttackingCharacterIndex = GetNextCharacterToAttack(0);
         }
         
         autoAttackCoroutine = StartCoroutine(AutoAttack());
@@ -77,7 +82,7 @@ public class AutoAttackManager : MonoBehaviour
                 return Array.FindIndex(Characters, character => character != null && character.CurrentHealth > 0);
             }
 
-            if (Characters[currentAttackingCharacterIndex] != null)
+            if (Characters[currentAttackingCharacterIndex] != null && Characters[currentAttackingCharacterIndex].CurrentHealth > 0)
             {
                 return currentAttackingCharacterIndex;
             }

@@ -1904,7 +1904,7 @@ MonoBehaviour:
   m_Player:
     play: 1
     initialPlayDelay: 0
-    duration: 1
+    duration: 2.2
     loop: 1
     loopDelay: 0
     updateMode: 0
