@@ -20,6 +20,7 @@ public class NewCharacterScreenUI : MonoBehaviour
         string imageResourceName = $"{character.Id.ToString()}{Constants.BremiumResourceSuffix}";
         // TODO Resources.Load should be cached for performance. Ignoring it for now since it's not important on this project
         Sprite characterSprite = Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, imageResourceName));
+        CharacterImage.preserveAspect = true;
         CharacterImage.sprite = characterSprite;
         CharacterNameText.text = $"{character.Name} unlocked! Poggies!";
     }

@@ -29,6 +29,7 @@ public class Character : MonoBehaviour
         }
         
         CharacterImage.enabled = true;
+        CharacterImage.preserveAspect = true;
         string imageResourceName = $"{CharacterData.Id.ToString()}{Constants.BremiumResourceSuffix}";
         // TODO Resources.Load should be cached for performance. Ignoring it for now since it's not important on this project
         Sprite characterSprite = Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, imageResourceName));
