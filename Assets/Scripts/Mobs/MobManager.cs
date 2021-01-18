@@ -160,7 +160,7 @@ public class MobManager : MonoBehaviour
                 currentMobs[i].MobRef = Instantiate(currentMobs[i].MobInfo.MobBody, currentMobs[i].Mob.transform.position,
                     Quaternion.identity);
                 currentMobs[i].MobRef.transform.parent = currentMobs[i].Mob.transform;
-                // currentMobs[i].MobRef.GetComponentInChildren<SpriteRenderer>().color = flrManager.hueShift;
+                currentMobs[i].MobRef.GetComponentInChildren<SpriteRenderer>().color = flrManager.hueShift;
                 currentMobs[i].HealthBar = Instantiate(gameHealthBar, gameCanvas.transform);
                 currentMobs[i].BoundingSize = currentMobs[i].MobRef.GetComponent<BoxCollider>().bounds.size;
 

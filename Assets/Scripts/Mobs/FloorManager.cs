@@ -29,7 +29,6 @@ public class FloorManager : MonoBehaviour
     public List<int> _ePerFloor = new List<int> {2, 3, 4, 2, 3,};
     public Color hueShift = Color.white;
 
-
     private void Awake()
     {
         
@@ -100,11 +99,11 @@ public class FloorManager : MonoBehaviour
             Destroy(currentFloor.gameObject);
             currentFloor = Instantiate(floors[_level%floors.Length]);
             
-            // hueShift = new Color(
-            //     URandom.Range(0f, 1f), 
-            //     URandom.Range(0f, 1f), 
-            //     URandom.Range(0f, 1f)
-            // );
+            hueShift = new Color(
+                URandom.Range(0f, 1f), 
+                URandom.Range(0f, 1f), 
+                URandom.Range(0f, 1f)
+            );
             levelChange.Invoke();
             
             // Save New Level
