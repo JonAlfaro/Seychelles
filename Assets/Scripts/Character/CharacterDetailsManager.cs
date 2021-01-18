@@ -20,7 +20,7 @@ public class CharacterDetailsManager : MonoBehaviour
     public CharacterSelectUI[] CharacterSelectUIs;
     public GameObject CharacterSelectItemPrefab;
     public Sprite NoCharacterSelectedImage;
-    
+
     private CharacterData selectedCharacter;
     private int selectedCharacterSlot;
 
@@ -49,16 +49,17 @@ public class CharacterDetailsManager : MonoBehaviour
         OnCharacterSelected(null);
         selectedCharacterSlot = characterSlot;
         CreateCharacterGrid(CharacterGrid, GameDataManager.Instance.GameData.UnlockedCharacters);
-        
+
         CharacterSelectScreen.SetActive(true);
     }
-    
+
     public void CloseSelectCharacterScreen()
     {
         GameData gameData = GameDataManager.Instance.GameData;
-        
+
         // Put the previously selected character into the unlocked list before we remove it from the selected list
-        int newlySelectedCharacterIndex = Array.FindIndex(gameData.UnlockedCharacters, character => character.Id == selectedCharacter.Id);
+        int newlySelectedCharacterIndex =
+            Array.FindIndex(gameData.UnlockedCharacters, character => character.Id == selectedCharacter.Id);
         CharacterData currentCharacter = gameData.SelectedCharacters[selectedCharacterSlot];
         gameData.UnlockedCharacters[newlySelectedCharacterIndex] = currentCharacter;
 
@@ -67,11 +68,11 @@ public class CharacterDetailsManager : MonoBehaviour
 
         // Remove null characters in the case that the previously selected character was null
         gameData.UnlockedCharacters = gameData.UnlockedCharacters.Where(character => character != null).ToArray();
-        
+
         GameDataManager.Instance.Save();
 
         SetCharacterSelectUIs();
-        
+
         CharacterSelectScreen.SetActive(false);
     }
 
@@ -88,20 +89,21 @@ public class CharacterDetailsManager : MonoBehaviour
         {
             Destroy(image.gameObject);
         }
-        
+
         // Create the list of character select items
         foreach (CharacterData character in characters)
         {
             // Instantiate a character select item and add it to the grid
             GameObject go = Instantiate(CharacterSelectItemPrefab, characterGrid.transform, true);
-            
+
             // Assign the sprite of this character based on its id
             Image characterImage = go.GetComponent<Image>();
             string imageResourceName = $"{character.Id.ToString()}{Constants.BremiumResourceSuffix}";
             // TODO Resources.Load should be cached for performance. Ignoring it for now since it's not important on this project
-            Sprite characterSprite = Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, imageResourceName));
+            Sprite characterSprite =
+                Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, imageResourceName));
             characterImage.sprite = characterSprite;
-            
+
             // Add an onClick event to this character select item
             Button button = go.GetComponent<Button>();
             button.onClick.AddListener(() => OnCharacterSelected(character));
@@ -142,11 +144,11 @@ public class CharacterDetailsManager : MonoBehaviour
             CharacterData character = GameDataManager.Instance.GameData.SelectedCharacters.Length > i
                 ? GameDataManager.Instance.GameData.SelectedCharacters[i]
                 : null;
-            
+
             SetSelectedCharacterUI(CharacterSelectUIs[i], character);
         }
     }
-    
+
     private void SetSelectedCharacterUI(CharacterSelectUI characterSelectUI, CharacterData characterData)
     {
         if (characterData == null)
@@ -159,7 +161,8 @@ public class CharacterDetailsManager : MonoBehaviour
         else
         {
             string imageResourceName = $"{characterData.Id.ToString()}{Constants.BremiumResourceSuffix}";
-            characterSelectUI.Image.sprite = Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, imageResourceName));
+            characterSelectUI.Image.sprite =
+                Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, imageResourceName));
             characterSelectUI.AttackText.text = $"ATK: {characterData.Attack.ToString()}";
             characterSelectUI.HealthText.text = $"HP: {characterData.CurrentHealth}/{characterData.Health}";
             characterSelectUI.NameText.text = characterData.Name;

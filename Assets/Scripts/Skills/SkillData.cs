@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-[System.Serializable]
+﻿[System.Serializable]
 public class SkillData
 {
     public int Id { get; set; }
@@ -13,7 +11,8 @@ public class SkillData
     public float CoolDown { get; set; }
     public float CurrentCoolDown { get; set; }
 
-    public SkillData(int id, string name, string description, string iconName, EffectType effectType, TargetType targetType, float attackMultiplier, float coolDown)
+    public SkillData(int id, string name, string description, string iconName, EffectType effectType,
+        TargetType targetType, float attackMultiplier, float coolDown)
     {
         Id = id;
         Name = name;
@@ -31,7 +30,7 @@ public enum EffectType
 {
     damage,
     heal,
-    revive,
+    revive
 }
 
 public enum TargetType
@@ -40,5 +39,5 @@ public enum TargetType
     allyRandom,
     allyAOE,
     enemyRandom,
-    enemyAOE,
+    enemyAOE
 }

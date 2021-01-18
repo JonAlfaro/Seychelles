@@ -12,7 +12,7 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         Animator = GetComponent<Animator>();
-        
+
         CharacterImage = GetComponent<Image>();
         Assert.IsNotNull(CharacterImage);
         Assert.IsNotNull(Animator);
@@ -27,12 +27,13 @@ public class Character : MonoBehaviour
             CharacterImage.enabled = false;
             return;
         }
-        
+
         CharacterImage.enabled = true;
         CharacterImage.preserveAspect = true;
         string imageResourceName = $"{CharacterData.Id.ToString()}{Constants.BremiumResourceSuffix}";
         // TODO Resources.Load should be cached for performance. Ignoring it for now since it's not important on this project
-        Sprite characterSprite = Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, imageResourceName));
+        Sprite characterSprite =
+            Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, imageResourceName));
         CharacterImage.sprite = characterSprite;
 
         if (CharacterData.CurrentHealth <= 0)
@@ -44,15 +45,15 @@ public class Character : MonoBehaviour
     public void Damage(int damage)
     {
         if (CharacterData == null) return;
-        
+
         CharacterData.Damage(damage);
         OnDamageTaken();
     }
-    
+
     public void ResetHealth()
     {
         if (CharacterData == null) return;
-        
+
         CharacterData.CurrentHealth = CharacterData.Health;
         Animator.Play("Character Idle");
     }
@@ -60,7 +61,7 @@ public class Character : MonoBehaviour
     public void OnDamageTaken()
     {
         if (CharacterData == null) return;
-        
+
         if (CharacterData.CurrentHealth <= 0)
         {
             Die();
@@ -74,14 +75,14 @@ public class Character : MonoBehaviour
     public void StartSkillCooldown()
     {
         if (CharacterData == null) return;
-        
+
         CharacterData.SkillData.CurrentCoolDown = CharacterData.SkillData.CoolDown;
     }
 
     private void Die()
     {
         if (CharacterData == null) return;
-        
+
         Animator.Play("Character Death");
     }
 }

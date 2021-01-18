@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-using Random = UnityEngine.Random;
 
 public class CharacterSkillsManager : MonoBehaviour
 {
     public MobManager MobManager;
     public BattleSceneUI BattleSceneUI;
-    
+
     private void Awake()
     {
         Assert.IsNotNull(MobManager);
@@ -29,15 +27,15 @@ public class CharacterSkillsManager : MonoBehaviour
     public void UseSkill(int index)
     {
         CharacterData activeCharacter = BattleSceneUI.Characters[index].CharacterData;
-        
-        float damage = activeCharacter.Attack 
+
+        float damage = activeCharacter.Attack
                        * activeCharacter.SkillData.AttackMultiplier
                        * (activeCharacter.SkillData.EffectType == EffectType.heal ? -1 : 1);
-        
+
         FindTargetsAndUseSkill(BattleSceneUI.Characters[index], Mathf.RoundToInt(damage));
         BattleSceneUI.Characters[index].StartSkillCooldown();
     }
-    
+
     private void FindTargetsAndUseSkill(Character activeCharacter, int damage)
     {
         switch (activeCharacter.CharacterData.SkillData.TargetType)
@@ -56,6 +54,7 @@ public class CharacterSkillsManager : MonoBehaviour
                 {
                     character.Damage(damage);
                 }
+
                 break;
             case TargetType.enemyAOE:
                 List<int> mobIndexes = MobManager.GetAliveMobIndexes();
@@ -63,6 +62,7 @@ public class CharacterSkillsManager : MonoBehaviour
                 {
                     MobManager.AttackMob(mobIndex, damage);
                 }
+
                 break;
         }
     }
