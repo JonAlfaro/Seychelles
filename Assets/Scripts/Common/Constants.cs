@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
 public static class Constants
 {
@@ -10,13 +9,15 @@ public static class Constants
     public static string CharacterResourceFolder = "Characters";
     public static string SkillResourceFolder = "Skills";
     public static string BremiumResourceSuffix = ".psvr"; // playstation virtual reality
-    public static SortedDictionary<Rarity, float> GachaOdds = new SortedDictionary<Rarity, float>()
+
+    public static SortedDictionary<Rarity, float> GachaOdds = new SortedDictionary<Rarity, float>
     {
         {Rarity.frog, 50},
         {Rarity.fish, 30},
         {Rarity.knife, 12},
         {Rarity.gun, 7},
-        {Rarity.doubleGun, 1},
+        {Rarity.doubleGun, 1}
     };
+
     public static int GachaCost = 100;
 }

@@ -27,7 +27,7 @@ public class CurrentlyAttackingCharacterUI : MonoBehaviour
             Target.SetActive(false);
             return;
         }
-        
+
         Target.SetActive(true);
         Transform targetPositionTransform = TargetPositions[positionIndex].transform;
         Target.transform.SetPositionAndRotation(targetPositionTransform.position, targetPositionTransform.rotation);

@@ -28,7 +28,7 @@ public class ShopSceneUI : MonoBehaviour
         {
             GameDataManager.Instance.GameData.PremiumCurrency -= Constants.GachaCost;
             CharacterData unlockedCharacter = CharacterList.GetRandomCharacter();
-            
+
             GameDataManager.Instance.AddUnlockedCharacter(unlockedCharacter);
             GameDataManager.Instance.Save();
             SetUpUI();
@@ -47,7 +47,7 @@ public class ShopSceneUI : MonoBehaviour
     {
         NewCharacterScreen.gameObject.SetActive(false);
     }
-    
+
     private void ShowNewCharacterScreen(CharacterData character)
     {
         NewCharacterScreen.SetCharacter(character);
@@ -57,7 +57,8 @@ public class ShopSceneUI : MonoBehaviour
     private void SetUpUI()
     {
         RollButton.interactable = GameDataManager.Instance.GameData.PremiumCurrency >= Constants.GachaCost;
-        PremiumCurrencyText.text = $"{GameDataManager.Instance.GameData.PremiumCurrency} {Constants.PremiumCurrencyName}";
+        PremiumCurrencyText.text =
+            $"{GameDataManager.Instance.GameData.PremiumCurrency} {Constants.PremiumCurrencyName}";
         RollCostText.text = $"${Constants.GachaCost}";
     }
 }

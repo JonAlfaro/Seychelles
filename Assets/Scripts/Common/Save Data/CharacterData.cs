@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[System.Serializable]
+[Serializable]
 public class CharacterData
 {
     public int Experience { get; set; }
@@ -17,7 +17,8 @@ public class CharacterData
     public int DuplicateLevel { get; set; }
     public SkillData SkillData { get; set; }
 
-    public CharacterData(int id, int health, int attack, string name, string description, Rarity rarity, SkillData skillData)
+    public CharacterData(int id, int health, int attack, string name, string description, Rarity rarity,
+        SkillData skillData)
     {
         Id = id;
         Name = name;
@@ -40,8 +41,8 @@ public class CharacterData
     public void AddExperience(int experience)
     {
         Experience += experience;
-        
-        int experienceRequired = (ExperienceLevel+1) * 100;
+
+        int experienceRequired = (ExperienceLevel + 1) * 100;
         if (Experience >= experienceRequired)
         {
             Experience = experience % experienceRequired;
@@ -52,10 +53,10 @@ public class CharacterData
     public void AddDuplicate()
     {
         DuplicateLevel++;
-        
+
         int attackGained = 10 * DuplicateLevel + Random.Range(0, 5);
         int healthGained = 10 * DuplicateLevel + Random.Range(0, 5);
-        
+
         Attack += attackGained;
         Health += healthGained;
     }
@@ -65,7 +66,7 @@ public class CharacterData
         ExperienceLevel++;
         int attackGained = ExperienceLevel + Random.Range(0, 3);
         int healthGained = ExperienceLevel + Random.Range(0, 3);
-        
+
         Attack += attackGained;
         Health += healthGained;
     }
@@ -77,5 +78,5 @@ public enum Rarity
     fish,
     knife,
     gun,
-    doubleGun,
+    doubleGun
 }

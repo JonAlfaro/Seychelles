@@ -13,8 +13,8 @@ public class AutoAttackManager : MonoBehaviour
     private float AutoAttackInterval = 0.8f;
     private Coroutine autoAttackCoroutine;
 
-    public int AttackingCharacterIndex { get; private set; } = 0;
-    public int AttackingEnemyIndex { get; private set; } = 0;
+    public int AttackingCharacterIndex { get; private set; }
+    public int AttackingEnemyIndex { get; private set; }
 
     private void Awake()
     {
@@ -37,10 +37,10 @@ public class AutoAttackManager : MonoBehaviour
         {
             AttackingCharacterIndex = GetNextCharacterToAttack(0);
         }
-        
+
         autoAttackCoroutine = StartCoroutine(AutoAttack());
     }
-    
+
     public void StopAutoAttacking()
     {
         if (autoAttackCoroutine != null)
@@ -68,7 +68,7 @@ public class AutoAttackManager : MonoBehaviour
 
             // Emit the OnAutoAttack event with the character that attacked
             OnAutoAttack.Invoke(attackingCharacter);
-            
+
             yield return new WaitForSeconds(AutoAttackInterval);
         }
     }
@@ -78,13 +78,14 @@ public class AutoAttackManager : MonoBehaviour
         while (true)
         {
             currentAttackingCharacterIndex++;
-            
+
             if (currentAttackingCharacterIndex >= Characters.Length)
             {
                 return Array.FindIndex(Characters, character => character != null && character.CurrentHealth > 0);
             }
 
-            if (Characters[currentAttackingCharacterIndex] != null && Characters[currentAttackingCharacterIndex].CurrentHealth > 0)
+            if (Characters[currentAttackingCharacterIndex] != null &&
+                Characters[currentAttackingCharacterIndex].CurrentHealth > 0)
             {
                 return currentAttackingCharacterIndex;
             }
@@ -96,13 +97,13 @@ public class AutoAttackManager : MonoBehaviour
         while (true)
         {
             currentAttackingEnemyIndex++;
-            
+
             if (currentAttackingEnemyIndex >= mobManager.currentMobs.Count)
             {
                 return mobManager.GetAliveMobIndexes().First();
             }
 
-            if (mobManager.currentMobs[currentAttackingEnemyIndex] != null 
+            if (mobManager.currentMobs[currentAttackingEnemyIndex] != null
                 && mobManager.currentMobs[currentAttackingEnemyIndex].MobInfo.Health > 0)
             {
                 return currentAttackingEnemyIndex;
