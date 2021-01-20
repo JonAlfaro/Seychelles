@@ -15,13 +15,13 @@ public class GameDataManager : MonoBehaviour
 
     public void AddUnlockedCharacter(CharacterData character)
     {
-        if (GameData.UnlockedCharacters.Any(c => c.Id == character.Id))
+        if (GameData.UnlockedCharacters.Any(c => c?.Id == character.Id))
         {
-            GameData.UnlockedCharacters.First(c => c.Id == character.Id).AddDuplicate();
+            GameData.UnlockedCharacters.First(c => c?.Id == character.Id).AddDuplicate();
         }
-        else if (GameData.SelectedCharacters.Any(c => c.Id == character.Id))
+        else if (GameData.SelectedCharacters.Any(c => c?.Id == character.Id))
         {
-            GameData.SelectedCharacters.First(c => c.Id == character.Id).AddDuplicate();
+            GameData.SelectedCharacters.First(c => c?.Id == character.Id).AddDuplicate();
         }
         else
         {
