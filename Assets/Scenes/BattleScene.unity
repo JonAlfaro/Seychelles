@@ -2294,8 +2294,10 @@ MonoBehaviour:
   MobsPerLevel:
   - Boss: {fileID: 5451904574018854234, guid: 27f9d1cade579644da4db9203bb3477d, type: 3}
     Mobs:
-    - {fileID: 4609977779514089259, guid: 7c631f7ec13b67749981e097b84002bf, type: 3}
-    - {fileID: 7643824157626056364, guid: 9fef4d2eca11a7240ba7e9b60de139df, type: 3}
+    - {fileID: 6251880458129975834, guid: 472dbe7f6469d4a41a63a275f190068d, type: 3}
+    - {fileID: 2272205846087141255, guid: 9074ad504803b0540aacfeaa36743495, type: 3}
+    - {fileID: 5419520989035068101, guid: 4fe7543ffebaf204ea61c78b719071ea, type: 3}
+    - {fileID: 3358170330756022354, guid: 3f98954da64114d4bb078950c61cef56, type: 3}
   - Boss: {fileID: 5451904574018854234, guid: 27f9d1cade579644da4db9203bb3477d, type: 3}
     Mobs:
     - {fileID: 9079728702240296717, guid: cc530b18d1b78544ea5d71b7421c80eb, type: 3}
