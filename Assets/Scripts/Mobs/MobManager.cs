@@ -253,6 +253,11 @@ public class MobManager : MonoBehaviour
 
         return aliveIndex;
     }
+    
+    public void DisableGravity(int mobIndex)
+    {
+        
+    }
 
     public void AttackMob(int mobIndex, int dmg)
     {

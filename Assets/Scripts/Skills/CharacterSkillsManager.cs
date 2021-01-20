@@ -54,14 +54,22 @@ public class CharacterSkillsManager : MonoBehaviour
                 {
                     character.Damage(damage);
                 }
-
                 break;
             case TargetType.enemyAOE:
                 List<int> mobIndexes = MobManager.GetAliveMobIndexes();
                 foreach (int mobIndex in mobIndexes)
                 {
-                    MobManager.AttackMob(mobIndex, damage);
+                    switch (activeCharacter.CharacterData.SkillData.EffectType)
+                    {
+                        case EffectType.disableGravity:
+                            MobManager.DisableGravity(mobIndex);
+                            break;
+                        default:
+                            MobManager.AttackMob(mobIndex, damage);
+                            break;
+                    }
                 }
+
 
                 break;
         }

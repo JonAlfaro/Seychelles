@@ -30,7 +30,8 @@ public enum EffectType
 {
     damage,
     heal,
-    revive
+    revive,
+    disableGravity
 }
 
 public enum TargetType

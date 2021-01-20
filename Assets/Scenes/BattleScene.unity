@@ -2374,7 +2374,11 @@ MonoBehaviour:
   _floor: 1
   _level: 1
   floors:
+  - {fileID: 1928438455578451023, guid: a39281fd5b537fc4082b69eb462055ed, type: 3}
   - {fileID: 1928438455578451023, guid: 7d9956b8da15cb84e96a4f091fe9eb23, type: 3}
+  - {fileID: 1928438455578451023, guid: 4ab419de4641b6e418b2a7e00019351c, type: 3}
+  - {fileID: 1928438455578451023, guid: 38da7096a1eb972428cb92dbc12918f8, type: 3}
+  - {fileID: 1928438455578451023, guid: ad23f4c4c463c3c48b4d0e93a6cba49f, type: 3}
   currentFloor: {fileID: 0}
   _ePerFloor: 0200000003000000040000000200000003000000
   hueShift: {r: 1, g: 1, b: 1, a: 1}
