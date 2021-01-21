@@ -265,7 +265,8 @@ public class MobManager : MonoBehaviour
     
     public void DisableGravity(int mobIndex)
     {
-        
+        currentMobs[mobIndex].MobInfo.gravity = true;
+
     }
 
     public void AttackMob(int mobIndex, int dmg)
