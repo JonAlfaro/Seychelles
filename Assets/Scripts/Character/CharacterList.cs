@@ -26,6 +26,9 @@ public static class CharacterList
         CharacterDatabase.SerialBeanKiller,
         CharacterDatabase.TheGiantRat,
         CharacterDatabase.ElectricUsingBeanRat,
+        CharacterDatabase.Samurai,
+        CharacterDatabase.Monkey,
+        CharacterDatabase.Chad,
     };
 
     public static List<CharacterData> StarterSelectedCharacters = new List<CharacterData>
