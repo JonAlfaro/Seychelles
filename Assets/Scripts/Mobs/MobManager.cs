@@ -190,31 +190,31 @@ public class MobManager : MonoBehaviour
             var spawnPos = bossSpawnPoint.transform.position;
             spawnPos.x += adjustX;
             currentMobs.Add(new CurrentLevelMob(Instantiate(levelBoss, spawnPos, Quaternion.identity)));
-            currentMobs.Last().MobRef = Instantiate(currentMobs.Last().MobInfo.MobBody,
-                currentMobs.Last().Mob.transform.position,
+            currentMobs[0].MobRef = Instantiate(currentMobs[0].MobInfo.MobBody,
+                currentMobs[0].Mob.transform.position,
                 Quaternion.identity);
-            currentMobs.Last().MobRef.transform.parent = currentMobs.Last().Mob.transform;
-            currentMobs.Last().HealthBar = Instantiate(gameHealthBar, gameCanvas.transform);
-            currentMobs.Last().BoundingSize = currentMobs.Last().MobRef.GetComponent<BoxCollider>().bounds.size;
+            currentMobs[0].MobRef.transform.parent = currentMobs[0].Mob.transform;
+            currentMobs[0].HealthBar = Instantiate(gameHealthBar, gameCanvas.transform);
+            currentMobs[0].BoundingSize = currentMobs[0].MobRef.GetComponent<BoxCollider>().bounds.size;
 
 
             // Move health bar to correct location on Canvas
             // Only Fired Once, so it'll probably break if resolution changes mid-game
-            var mobPos = currentMobs.Last().MobRef.transform.position;
-            currentMobs.Last().HealthBar.transform.position = playerCam.WorldToScreenPoint(
+            var mobPos = currentMobs[0].MobRef.transform.position;
+            currentMobs[0].HealthBar.transform.position = playerCam.WorldToScreenPoint(
                 new Vector3(
                     mobPos.x,
-                    mobPos.y + (currentMobs.Last().BoundingSize.y / 2) + 0.5f,
+                    mobPos.y + (currentMobs[0].BoundingSize.y / 2) + 0.5f,
                     mobPos.z
                 )
             );
 
-            currentMobs.Last().HealthBar.enabled = true;
+            currentMobs[0].HealthBar.enabled = true;
 
-            currentMobs.Last().HealthBar.gameObject.SetActive(true);
+            currentMobs[0].HealthBar.gameObject.SetActive(true);
 
             // Save record of max health
-            currentMobs.Last().MaxHealth = currentMobs.Last().MobInfo.Health;
+            currentMobs[0].MaxHealth = currentMobs[0].MobInfo.Health;
 
             // currentMobs.Last().MobRef.GetComponentInChildren<SpriteRenderer>().color = flrManager.hueShift;
         }

@@ -56,6 +56,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8317017813105564179, guid: 3a5ee7bd51636a44abff68926b973eb0, type: 3}
+      propertyPath: Name
+      value: KING TURTLE
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317017813105564179, guid: 3a5ee7bd51636a44abff68926b973eb0, type: 3}
       propertyPath: IsBoss
       value: 1
       objectReference: {fileID: 0}
