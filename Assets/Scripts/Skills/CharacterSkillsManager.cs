@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UI;
 
 public class CharacterSkillsManager : MonoBehaviour
 {
@@ -47,7 +48,18 @@ public class CharacterSkillsManager : MonoBehaviour
                 BattleSceneUI.Characters[Random.Range(0, BattleSceneUI.Characters.Length)].Damage(damage);
                 break;
             case TargetType.enemyRandom:
-                MobManager.AttackRandomAlive(damage);
+                if (activeCharacter.CharacterData.SkillData.EffectType == EffectType.charm)
+                {
+                    CurrentLevelMob mob = MobManager.GetRandomAlive();
+                    if (mob != null)
+                    {
+                        BattleSceneUI.SetFollower(mob.MobRef.GetComponentInChildren<SpriteRenderer>().sprite);
+                    }
+                }
+                else
+                {
+                    MobManager.AttackRandomAlive(damage);
+                }
                 break;
             case TargetType.allyAOE:
                 foreach (Character character in BattleSceneUI.Characters)

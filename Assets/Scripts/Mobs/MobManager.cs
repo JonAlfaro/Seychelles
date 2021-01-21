@@ -241,6 +241,15 @@ public class MobManager : MonoBehaviour
         if (aliveIndex.Count > 0)
             AttackMob(aliveIndex[Random.Range(0, aliveIndex.Count)], dmg);
     }
+    
+    public CurrentLevelMob GetRandomAlive()
+    {
+        var aliveIndex = GetAliveMobIndexes();
+        if (aliveIndex.Count > 0)
+            return currentMobs[aliveIndex[Random.Range(0, aliveIndex.Count)]];
+
+        return null;
+    }
 
     public List<int> GetAliveMobIndexes()
     {
