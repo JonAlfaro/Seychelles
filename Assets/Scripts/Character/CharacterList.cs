@@ -167,7 +167,7 @@ public static class CharacterList
         
         public static SkillData Offer = new SkillData(6, "Offer",
             "Gives the target an offer they can't refuse and they follow you and be personal body guard (Can target anything and everyone).",
-            "crown-coin", EffectType.damage, TargetType.enemyRandom, 0f, 10f);
+            "crown-coin", EffectType.charm, TargetType.enemyRandom, 0f, 10f);
         
         public static SkillData Joke = new SkillData(7, "Joke",
             "Bean hahahahaha.",

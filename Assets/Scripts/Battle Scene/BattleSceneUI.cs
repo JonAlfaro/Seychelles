@@ -8,6 +8,7 @@ public class BattleSceneUI : MonoBehaviour
     public Text PremiumCurrencyText;
     public GameObject[] GameOverUI;
     public Character[] Characters;
+    public Image FollowerImage;
 
     private void Awake()
     {
@@ -17,6 +18,7 @@ public class BattleSceneUI : MonoBehaviour
 
     private void Start()
     {
+        SetFollower(null);
         UpdatePremiumCurrencyUIAmount();
         for (int i = 0; i < GameDataManager.Instance.GameData.SelectedCharacters.Length; i++)
         {
@@ -54,5 +56,19 @@ public class BattleSceneUI : MonoBehaviour
     {
         PremiumCurrencyText.text =
             $"{GameDataManager.Instance.GameData.PremiumCurrency} {Constants.PremiumCurrencyName}";
+    }
+
+    public void SetFollower(Sprite sprite)
+    {
+        if (sprite == null)
+        {
+            FollowerImage.enabled = false;
+        }
+        else
+        {
+            FollowerImage.enabled = true;
+            FollowerImage.preserveAspect = true;
+            FollowerImage.sprite = sprite;
+        }
     }
 }

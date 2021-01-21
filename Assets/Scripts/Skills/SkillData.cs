@@ -30,7 +30,7 @@ public enum EffectType
 {
     damage,
     heal,
-    revive,
+    charm,
     disableGravity
 }
 
