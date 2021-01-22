@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 
@@ -6,12 +8,14 @@ public class ShopSceneUI : MonoBehaviour
 {
     public Text PremiumCurrencyText;
     public Text RollCostText;
+    public Text TotalUnlockedCharactersText;
     public Button RollButton;
     public NewCharacterScreenUI NewCharacterScreen;
 
     private void Awake()
     {
         Assert.IsNotNull(PremiumCurrencyText);
+        Assert.IsNotNull(TotalUnlockedCharactersText);
         Assert.IsNotNull(RollCostText);
         Assert.IsNotNull(RollButton);
         Assert.IsNotNull(NewCharacterScreen);
@@ -60,5 +64,9 @@ public class ShopSceneUI : MonoBehaviour
         PremiumCurrencyText.text =
             $"{GameDataManager.Instance.GameData.PremiumCurrency} {Constants.PremiumCurrencyName}";
         RollCostText.text = $"${Constants.GachaCost}";
+        
+        int unlockedCharacterCount = GameDataManager.Instance.GameData.UnlockedCharacters.Length +
+                                     GameDataManager.Instance.GameData.SelectedCharacters.Count(character => character != null);
+        TotalUnlockedCharactersText.text = $"Unlocked Frogs: {unlockedCharacterCount}/{CharacterList.AllCharacters.Count}";
     }
 }
