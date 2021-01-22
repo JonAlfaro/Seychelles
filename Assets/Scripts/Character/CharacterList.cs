@@ -207,7 +207,7 @@ public static class CharacterList
         
         public static SkillData RealityShift = new SkillData(15, "Reality Shift",
             "Even the Rigwork Wizard cannot predict this manifest of unholy energy. (long cooldown) (SCOPE INCREASE).",
-            "atomic-slashes", EffectType.disableGravity, TargetType.enemyAOE, 0f, 120f);
+            "atomic-slashes", EffectType.disableGravity, TargetType.enemyAOE, 0f, 10f);
         
         public static SkillData MakesRules = new SkillData(16, "Makes Rules",
             "Makes all the rules.",
