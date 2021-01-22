@@ -67,6 +67,12 @@ public class MobManager : MonoBehaviour
     public Image gameHealthBar;
 
     public UnityEvent OnMobKilled;
+    
+    
+    // rat stuff
+    private float ratsAttacking = 0;
+    private bool playRat;
+    public GameObject[] ratGO;
 
     // Start is called before the first frame update
     void Awake()
@@ -80,6 +86,14 @@ public class MobManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    private void SpawnRat()
+    {
+        var index = Random.Range(0, ratGO.Length - 1);
+        var r = GameObject.Instantiate(ratGO[index]);
+        r.transform.position = ratGO[index].transform.position;
+        r.GetComponent<csRat>().Run();
     }
 
     private void Start()
@@ -104,6 +118,36 @@ public class MobManager : MonoBehaviour
                 autoAttackMgr.StartAutoAttacking();
             }
         }
+
+        if (ratsAttacking >  0)
+        {
+            if (!playRat)
+            {
+                AudioManager.Instance.PlayRat();
+            }
+
+            playRat = true;
+            
+            ratsAttacking += Time.fixedDeltaTime;
+            if (ratsAttacking > 0.8)
+            {
+                SpawnRat();
+            }
+
+            if (ratsAttacking > 1)
+            {
+                AttackRandomAlive((int)(1+ratsAttacking));
+            }
+
+            if (ratsAttacking > 10)
+            {
+                ratsAttacking = 0;
+                playRat = false;
+                AudioManager.Instance.StopRat();
+            }
+        }
+
+
     }
 
     public void SetFloorMobs(float adjustX)
@@ -181,11 +225,11 @@ public class MobManager : MonoBehaviour
                 currentMobs[i].HealthBar.gameObject.SetActive(true);
 
                 var absLevel = flrManager._level * flrManager._floor;
-                currentMobs[i].MobInfo.Health = (int)((currentMobs[0].MobInfo.Health) * (1 + ((absLevel)*0.09f)));
-                currentMobs[i].MobInfo.Damage = (int)((currentMobs[0].MobInfo.Damage) * (1 + ((absLevel)*0.03f)));
+                currentMobs[i].MobInfo.Health = (int)((currentMobs[i].MobInfo.Health) * (1 + ((absLevel)*0.09f)));
+                currentMobs[i].MobInfo.Damage = (int)((currentMobs[i].MobInfo.Damage) * (1 + ((absLevel)*0.03f)));
 
                 // Save record of max health
-                currentMobs[i].MaxHealth = currentMobs[0].MobInfo.Health;
+                currentMobs[i].MaxHealth = currentMobs[i].MobInfo.Health;
 
                 _mobSpawnIndx = _mobSpawnIndx == mobSpawnPoints.Length - 1 ? _mobSpawnIndx = 0 : _mobSpawnIndx + 1;
             }
@@ -219,7 +263,7 @@ public class MobManager : MonoBehaviour
             currentMobs[0].HealthBar.gameObject.SetActive(true);
 
             var absLevel = flrManager._level * flrManager._floor;
-            currentMobs[0].MobInfo.Health = (int)((currentMobs[0].MobInfo.Health) * (1 + ((absLevel)*0.03f)));
+            currentMobs[0].MobInfo.Health = (int)((currentMobs[0].MobInfo.Health) * (1 + ((absLevel)*0.5f)));
             currentMobs[0].MobInfo.Damage = (int)((currentMobs[0].MobInfo.Damage) * (1 + ((absLevel)*0.03f)));
 
             // Save record of max health
@@ -272,10 +316,17 @@ public class MobManager : MonoBehaviour
         return aliveIndex;
     }
     
+    public void RatNuke()
+    {
+        Debug.Log("Rat nuke");
+        // currentMobs[mobIndex].MobInfo.gravity = true;
+        autoAttackMgr.StopAutoAttacking();
+        ratsAttacking = 0.1f;
+    }
+    
     public void DisableGravity(int mobIndex)
     {
         currentMobs[mobIndex].MobInfo.gravity = true;
-
     }
 
     public void AttackMob(int mobIndex, int dmg)

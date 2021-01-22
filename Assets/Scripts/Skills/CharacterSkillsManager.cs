@@ -76,6 +76,9 @@ public class CharacterSkillsManager : MonoBehaviour
                         case EffectType.disableGravity:
                             MobManager.DisableGravity(mobIndex);
                             break;
+                        case EffectType.ratNuke:
+                            MobManager.RatNuke();
+                            break;
                         default:
                             MobManager.AttackMob(mobIndex, damage);
                             break;

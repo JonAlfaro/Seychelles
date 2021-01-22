@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 926458744863389048, guid: c01b28d49df86fb44814bf8564b8866e, type: 3}
       propertyPath: m_Name
-      value: mobIC (4)
+      value: mobIC (4) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3541234618597775756, guid: c01b28d49df86fb44814bf8564b8866e, type: 3}
       propertyPath: m_RootOrder
@@ -54,6 +54,14 @@ PrefabInstance:
     - target: {fileID: 3541234618597775756, guid: c01b28d49df86fb44814bf8564b8866e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056251976349294034, guid: c01b28d49df86fb44814bf8564b8866e, type: 3}
+      propertyPath: Damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056251976349294034, guid: c01b28d49df86fb44814bf8564b8866e, type: 3}
+      propertyPath: Health
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7056251976349294034, guid: c01b28d49df86fb44814bf8564b8866e, type: 3}
       propertyPath: MobBody

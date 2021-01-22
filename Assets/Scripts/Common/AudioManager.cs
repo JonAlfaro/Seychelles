@@ -8,7 +8,9 @@ public class AudioManager : MonoBehaviour
     
     public AudioSource OSTAudioSource;
     public AudioSource SoundAudioSource;
+    public AudioSource RatAudioSource;
     public AudioClip[] OSTClips;
+    public AudioClip Rats;
     public AudioClip[] ShopEnterClips;
     public AudioClip[] ShopLeaveClips;
     
@@ -39,6 +41,16 @@ public class AudioManager : MonoBehaviour
     public void PlayShopEnterClip()
     {
         SoundAudioSource.PlayOneShot(ShopEnterClips.Shuffle().First());
+    }
+    
+    public void PlayRat()
+    {
+        RatAudioSource.PlayOneShot(Rats);
+    }
+    
+    public void StopRat()
+    {
+        RatAudioSource.Stop();
     }
     
     public void PlayShopLeaveClip()
