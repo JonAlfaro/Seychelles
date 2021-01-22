@@ -122,7 +122,7 @@ public class CharacterDetailsManager : MonoBehaviour
                                                     $"\n\n{character.SkillData.Description}";
             SelectedCharacterAttackText.text = $"Atk: {character.Attack}";
             SelectedCharacterHealthText.text = $"HP: {character.CurrentHealth}/{character.Health}";
-            SelectedCharacterDuplicateText.text = $"Duplicate: {character.DuplicateLevel}";
+            SelectedCharacterDuplicateText.text = $"Shininess: {character.DuplicateLevel}";
             SelectedCharacterLevelText.text = $"Level: {character.ExperienceLevel}";
         }
         else
