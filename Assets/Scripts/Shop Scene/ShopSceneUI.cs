@@ -24,6 +24,12 @@ public class ShopSceneUI : MonoBehaviour
     private void Start()
     {
         SetUpUI();
+        AudioManager.Instance.PlayShopEnterClip();
+    }
+
+    private void OnDestroy()
+    {
+        AudioManager.Instance.PlayShopLeaveClip();
     }
 
     public void Roll()
