@@ -351,9 +351,9 @@ public class MobManager : MonoBehaviour
             var goldMultiplier = Random.Range(0.5f, 1.5f);
             var gold = currentMobs[mobIndex].MaxHealth * goldMultiplier;
 
-            if (!isBoss && gold > 250)
+            if (!isBoss && gold > 75)
             {
-                gold = 250;
+                gold = 75;
             }
 
             var expMultiplier = Random.Range(0.5f, 1.5f);
