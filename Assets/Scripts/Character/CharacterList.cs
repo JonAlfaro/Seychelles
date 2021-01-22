@@ -216,7 +216,7 @@ public static class CharacterList
         
         public static SkillData RatNuke = new SkillData(17, "RatNuke",
             "Send in the rats",
-            "shark-bite", EffectType.ratNuke, TargetType.enemyAOE, 0.1f, 10f);
+            "rat-nuke", EffectType.ratNuke, TargetType.enemyAOE, 0.1f, 10f);
         
         public static SkillData Nibble = new SkillData(17, "Nibble",
             "Attacks using fists or fist-like limbs.",

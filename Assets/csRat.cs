@@ -31,7 +31,7 @@ public class csRat : MonoBehaviour
             _dieTime += Time.fixedDeltaTime;
         }
 
-        if (_dieTime > 3)
+        if (_dieTime > 10)
         {
             Destroy(gameObject);
         }
