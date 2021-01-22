@@ -29,6 +29,7 @@ public static class CharacterList
         CharacterDatabase.Samurai,
         CharacterDatabase.Monkey,
         CharacterDatabase.Chad,
+        CharacterDatabase.LooooongBoi,
     };
 
     public static List<CharacterData> StarterSelectedCharacters = new List<CharacterData>
@@ -128,9 +129,9 @@ public static class CharacterList
             Rarity.gun, SkillDatabase.Electrocute);
         
         public static CharacterData RigworkWizard = new CharacterData(18, 35, 100, "Rigwork Wizard", "Celestial being that controls gravity.",
-            Rarity.doubleGun, SkillDatabase.DisableGravity);
+            Rarity.doubleGun, SkillDatabase.RealityShift);
         
-        public static CharacterData MonkeyneticClown = new CharacterData(19, 45, 60, "Monkeynetic Clown", "",
+        public static CharacterData MonkeyneticClown = new CharacterData(19, 45, 60, "Monkeynetic Clown", "I dunno. Chief executive shadow councillor. NO Vice president of the shadow council.",
             Rarity.gun, SkillDatabase.Heal);
         
         public static CharacterData TheGiantRat = new CharacterData(20, 70, 70, "The Giant Rat", "i am the rat that makes all the rules",
@@ -138,6 +139,9 @@ public static class CharacterList
         
         public static CharacterData TheRats = new CharacterData(21, 10, 10, "The Rats", "Rats, we're rats; we're the rats. we prey at night, we stalk at night; we're the rats.",
             Rarity.frog, SkillDatabase.Nibble);
+        
+        public static CharacterData LooooongBoi = new CharacterData(22, 100, 100, "Loooong Boi", "His bark is worse than his bite.",
+            Rarity.doubleGun, SkillDatabase.LogDogFireballBarrage);
     }
 
     private static class SkillDatabase
@@ -201,8 +205,8 @@ public static class CharacterList
             "Puts enemy into an electric chair.",
             "lightning-arc", EffectType.damage, TargetType.enemyAOE, 1f, 1f);
         
-        public static SkillData DisableGravity = new SkillData(15, "Disable Gravity",
-            "Disables gravity on enemies (long cooldown) (SCOPE INCREASE).",
+        public static SkillData RealityShift = new SkillData(15, "Reality Shift",
+            "Even the Rigwork Wizard cannot predict this manifest of unholy energy. (long cooldown) (SCOPE INCREASE).",
             "atomic-slashes", EffectType.disableGravity, TargetType.enemyAOE, 0f, 120f);
         
         public static SkillData MakesRules = new SkillData(16, "Makes Rules",
@@ -212,5 +216,9 @@ public static class CharacterList
         public static SkillData Nibble = new SkillData(17, "Nibble",
             "Attacks using fists or fist-like limbs.",
             "shark-bite", EffectType.damage, TargetType.enemyRandom, 0.5f, 10f);
+        
+        public static SkillData LogDogFireballBarrage = new SkillData(18, "Log Dog Fireball Barrage",
+            "Shoots fireballs from his mouth (ranged magical).",
+            "basset-hound-head", EffectType.damage, TargetType.enemyAOE, 10f, 0f);
     }
 }
