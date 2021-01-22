@@ -56,6 +56,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 998cfcff04de17d4aa491b6461a79dd8, type: 3}
   - {fileID: 8300000, guid: 80a76df3c0f3768458b81e056bd9cb85, type: 3}
   - {fileID: 8300000, guid: c6095d11ec637d146b8476652fb2edba, type: 3}
+  - {fileID: 8300000, guid: 3c5ccb261a3517345af2bbdd2262a2d9, type: 3}
   ShopEnterClips: []
   ShopLeaveClips: []
 --- !u!82 &8078580728634213615

@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour
     {
         if (!OSTAudioSource.isPlaying)
         {
-            AudioClip clipToPlay = OSTClips.Shuffle().First();
+            AudioClip clipToPlay = OSTClips.Shuffle().First(clip => clip != OSTAudioSource.clip);
             OSTAudioSource.clip = clipToPlay;
             OSTAudioSource.Play();
         }
