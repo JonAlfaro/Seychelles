@@ -1,5 +1,5 @@
-# Seychelles
-Seychelles - FrogFish: KnifeFish (Unity Mobile Game)
+# Seychelles (Unity Mobile Game)
+Seychelles - FrogFish: KnifeFish 
 
 ## Game Description:
 
