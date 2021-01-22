@@ -67,7 +67,7 @@ public class MobManager : MonoBehaviour
     public Image gameHealthBar;
 
     public UnityEvent OnMobKilled;
-    
+    private int _absLevel=2;
     
     // rat stuff
     private float ratsAttacking = 0;
@@ -136,7 +136,7 @@ public class MobManager : MonoBehaviour
 
             if (ratsAttacking > 1)
             {
-                AttackRandomAlive((int)(1+ratsAttacking));
+                AttackRandomAlive((int)(_absLevel/2));
             }
 
             if (ratsAttacking > 10)
@@ -180,6 +180,7 @@ public class MobManager : MonoBehaviour
 
     public void SpawnMobs(float adjustX)
     {
+        _absLevel = flrManager._level * (flrManager._floor + 1);
         // Destroy Exisiting gb
         foreach (var mob in currentMobs)
         {
@@ -224,9 +225,12 @@ public class MobManager : MonoBehaviour
 
                 currentMobs[i].HealthBar.gameObject.SetActive(true);
 
-                var absLevel = flrManager._level * flrManager._floor;
-                currentMobs[i].MobInfo.Health = (int)((currentMobs[i].MobInfo.Health) * (1 + ((absLevel)*0.09f)));
-                currentMobs[i].MobInfo.Damage = (int)((currentMobs[i].MobInfo.Damage) * (1 + ((absLevel)*0.03f)));
+                if (_absLevel > 18)
+                {
+                    currentMobs[i].MobInfo.Health = (int) ((currentMobs[i].MobInfo.Health) * (1 + ((_absLevel) * 1.7f)));
+                    currentMobs[i].MobInfo.Damage =
+                        (int) ((currentMobs[i].MobInfo.Damage) * (1 + ((_absLevel) * 0.01f)));
+                }
 
                 // Save record of max health
                 currentMobs[i].MaxHealth = currentMobs[i].MobInfo.Health;
@@ -262,9 +266,12 @@ public class MobManager : MonoBehaviour
 
             currentMobs[0].HealthBar.gameObject.SetActive(true);
 
-            var absLevel = flrManager._level * flrManager._floor;
-            currentMobs[0].MobInfo.Health = (int)((currentMobs[0].MobInfo.Health) * (1 + ((absLevel)*0.5f)));
-            currentMobs[0].MobInfo.Damage = (int)((currentMobs[0].MobInfo.Damage) * (1 + ((absLevel)*0.03f)));
+            if (_absLevel > 18)
+            {
+                currentMobs[0].MobInfo.Health = (int)((currentMobs[0].MobInfo.Health) * (1 + ((_absLevel)*3.1)));
+                currentMobs[0].MobInfo.Damage = (int)((currentMobs[0].MobInfo.Damage) * (1 + ((_absLevel)*0.015f)));
+            } 
+
 
             // Save record of max health
             currentMobs[0].MaxHealth = currentMobs[0].MobInfo.Health;
