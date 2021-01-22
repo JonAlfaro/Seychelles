@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -179,8 +180,12 @@ public class MobManager : MonoBehaviour
 
                 currentMobs[i].HealthBar.gameObject.SetActive(true);
 
+                var absLevel = flrManager._level * flrManager._floor;
+                currentMobs[i].MobInfo.Health = (int)((currentMobs[0].MobInfo.Health) * (1 + ((absLevel)*0.09f)));
+                currentMobs[i].MobInfo.Damage = (int)((currentMobs[0].MobInfo.Damage) * (1 + ((absLevel)*0.03f)));
+
                 // Save record of max health
-                currentMobs[i].MaxHealth = currentMobs[i].MobInfo.Health;
+                currentMobs[i].MaxHealth = currentMobs[0].MobInfo.Health;
 
                 _mobSpawnIndx = _mobSpawnIndx == mobSpawnPoints.Length - 1 ? _mobSpawnIndx = 0 : _mobSpawnIndx + 1;
             }
@@ -212,6 +217,10 @@ public class MobManager : MonoBehaviour
             currentMobs[0].HealthBar.enabled = true;
 
             currentMobs[0].HealthBar.gameObject.SetActive(true);
+
+            var absLevel = flrManager._level * flrManager._floor;
+            currentMobs[0].MobInfo.Health = (int)((currentMobs[0].MobInfo.Health) * (1 + ((absLevel)*0.03f)));
+            currentMobs[0].MobInfo.Damage = (int)((currentMobs[0].MobInfo.Damage) * (1 + ((absLevel)*0.03f)));
 
             // Save record of max health
             currentMobs[0].MaxHealth = currentMobs[0].MobInfo.Health;
@@ -265,7 +274,8 @@ public class MobManager : MonoBehaviour
     
     public void DisableGravity(int mobIndex)
     {
-        
+        currentMobs[mobIndex].MobInfo.gravity = true;
+
     }
 
     public void AttackMob(int mobIndex, int dmg)

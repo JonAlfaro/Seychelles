@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using Random = System.Random;
 using URandom = UnityEngine.Random;
 
@@ -11,6 +12,8 @@ public class FloorManager : MonoBehaviour
     public MobManager mobManager;
     public UnityEvent floorChange;
     public UnityEvent levelChange;
+    public Text levelUI;
+    public Text floorUI;
 
     // 6 floors per level
     public int _floor = 1;
@@ -48,6 +51,9 @@ public class FloorManager : MonoBehaviour
         _level = GameDataManager.Instance.GameData.Level;
         _floor = GameDataManager.Instance.GameData.Floor;
 
+        levelUI.text = "Level " + _level;
+        floorUI.text = "Floor " + _floor;
+
         currentFloor = Instantiate(floors[0]);
         if (floorChange == null)
             floorChange = new UnityEvent();
@@ -79,6 +85,9 @@ public class FloorManager : MonoBehaviour
         GameDataManager.Instance.GameData.Floor = _floor;
         GameDataManager.Instance.Save();
         floorChange.Invoke();
+        
+        levelUI.text = "Level " + _level;
+        floorUI.text = "Floor " + _floor;
     }
 
 
@@ -113,6 +122,9 @@ public class FloorManager : MonoBehaviour
         }
 
         GameDataManager.Instance.Save();
+        
+        levelUI.text = "Level " + _level;
+        floorUI.text = "Floor " + _floor;
 
 
         return GetFloorLevel();
