@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using Coffee.UIEffects;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -7,6 +9,7 @@ public class Character : MonoBehaviour
 {
     public CharacterData CharacterData;
     public Image CharacterImage;
+    public UIShiny CharacterShiny;
     public Animator Animator;
 
     private void Awake()
@@ -16,6 +19,7 @@ public class Character : MonoBehaviour
         CharacterImage = GetComponent<Image>();
         Assert.IsNotNull(CharacterImage);
         Assert.IsNotNull(Animator);
+        Assert.IsNotNull(CharacterShiny);
     }
 
     public void SetCharacter(CharacterData data)
@@ -35,6 +39,17 @@ public class Character : MonoBehaviour
         Sprite characterSprite =
             Resources.Load<Sprite>(Path.Combine(Constants.CharacterResourceFolder, imageResourceName));
         CharacterImage.sprite = characterSprite;
+
+        if (CharacterData.DuplicateLevel >= 1)
+        {
+            CharacterShiny.Play();
+            CharacterShiny.brightness = Mathf.Min(CharacterData.DuplicateLevel / 10f, 1);
+            CharacterShiny.width = CharacterData.DuplicateLevel > 10 ? 0.6f : 0.3f;
+        }
+        else
+        {
+            CharacterShiny.Stop();
+        }
 
         if (CharacterData.CurrentHealth <= 0)
         {
