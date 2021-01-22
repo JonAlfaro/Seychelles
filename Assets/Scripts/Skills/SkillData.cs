@@ -31,7 +31,8 @@ public enum EffectType
     damage,
     heal,
     charm,
-    disableGravity
+    disableGravity,
+    ratNuke
 }
 
 public enum TargetType

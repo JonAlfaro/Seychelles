@@ -45,7 +45,8 @@ public static class CharacterList
         CharacterDatabase.Andette,
         CharacterDatabase.LilAndy,
         CharacterDatabase.Andont,
-        CharacterDatabase.CharFive
+        CharacterDatabase.CharFive,
+        CharacterDatabase.TheGiantRat
     };
 
     public static CharacterData GetRandomCharacter()
@@ -135,7 +136,7 @@ public static class CharacterList
             Rarity.gun, SkillDatabase.Heal);
         
         public static CharacterData TheGiantRat = new CharacterData(20, 70, 70, "The Giant Rat", "i am the rat that makes all the rules",
-            Rarity.doubleGun, SkillDatabase.MakesRules);
+            Rarity.doubleGun, SkillDatabase.RatNuke);
         
         public static CharacterData TheRats = new CharacterData(21, 10, 10, "The Rats", "Rats, we're rats; we're the rats. we prey at night, we stalk at night; we're the rats.",
             Rarity.frog, SkillDatabase.Nibble);
@@ -212,6 +213,10 @@ public static class CharacterList
         public static SkillData MakesRules = new SkillData(16, "Makes Rules",
             "Makes all the rules.",
             "atomic-slashes", EffectType.disableGravity, TargetType.enemyAOE, 0f, 120f);
+        
+        public static SkillData RatNuke = new SkillData(17, "RatNuke",
+            "Send in the rats",
+            "shark-bite", EffectType.ratNuke, TargetType.enemyAOE, 0.1f, 10f);
         
         public static SkillData Nibble = new SkillData(17, "Nibble",
             "Attacks using fists or fist-like limbs.",

@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4423688144312062624, guid: 84b5e7363edd62c4fbc7df792fffbda0, type: 3}
       propertyPath: m_Name
-      value: mobIC (7)
+      value: mobIC (7) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5788179357893900810, guid: 84b5e7363edd62c4fbc7df792fffbda0, type: 3}
       propertyPath: MobBody

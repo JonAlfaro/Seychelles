@@ -56,6 +56,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8317017813105564179, guid: 3a5ee7bd51636a44abff68926b973eb0, type: 3}
+      propertyPath: Damage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317017813105564179, guid: 3a5ee7bd51636a44abff68926b973eb0, type: 3}
+      propertyPath: Health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317017813105564179, guid: 3a5ee7bd51636a44abff68926b973eb0, type: 3}
+      propertyPath: IsBoss
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317017813105564179, guid: 3a5ee7bd51636a44abff68926b973eb0, type: 3}
       propertyPath: MobBody
       value: 
       objectReference: {fileID: 8485879757501447904, guid: 1383b98e1c1e16a48b2130afea322ac3, type: 3}
