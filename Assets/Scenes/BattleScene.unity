@@ -563,7 +563,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 28.399902, y: -120.80005}
+  m_AnchoredPosition: {x: 28.40039, y: -120.799805}
   m_SizeDelta: {x: 1024, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &178952187
@@ -634,7 +634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -530.99994, y: 77.999756}
+  m_AnchoredPosition: {x: -530.99994, y: 78}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &249669226
@@ -829,7 +829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 266.65002, y: -147.06009}
+  m_AnchoredPosition: {x: 266.6504, y: -147.06055}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &318287690
@@ -1174,7 +1174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 98.00879, y: -147.06006}
+  m_AnchoredPosition: {x: 98.009766, y: -147.06055}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &546715726
@@ -1397,7 +1397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 98.01514, y: 100}
+  m_AnchoredPosition: {x: 98.015625, y: 100}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &619494172
@@ -1520,6 +1520,7 @@ GameObject:
   - component: {fileID: 681708248}
   - component: {fileID: 681708251}
   - component: {fileID: 681708252}
+  - component: {fileID: 681708253}
   m_Layer: 5
   m_Name: Character 4
   m_TagString: Untagged
@@ -1560,6 +1561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterImage: {fileID: 681708249}
+  CharacterShiny: {fileID: 681708253}
   Animator: {fileID: 0}
 --- !u!114 &681708249
 MonoBehaviour:
@@ -1632,6 +1634,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &681708253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681708246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19b7e2285c104f6ca47d583f3e5444f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectFactor: 0.5
+  m_Width: 0.3
+  m_Rotation: 135
+  m_Softness: 1
+  m_Brightness: 1
+  m_Gloss: 1
+  m_EffectArea: 0
+  m_Player:
+    play: 0
+    initialPlayDelay: 0
+    duration: 1
+    loop: 1
+    loopDelay: 1
+    updateMode: 0
 --- !u!1 &708594481
 GameObject:
   m_ObjectHideFlags: 0
@@ -1728,6 +1756,7 @@ GameObject:
   - component: {fileID: 778521475}
   - component: {fileID: 778521478}
   - component: {fileID: 778521479}
+  - component: {fileID: 778521480}
   m_Layer: 5
   m_Name: Character 3
   m_TagString: Untagged
@@ -1768,6 +1797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterImage: {fileID: 778521476}
+  CharacterShiny: {fileID: 778521480}
   Animator: {fileID: 0}
 --- !u!114 &778521476
 MonoBehaviour:
@@ -1840,6 +1870,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &778521480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778521473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19b7e2285c104f6ca47d583f3e5444f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectFactor: 0.5
+  m_Width: 0.3
+  m_Rotation: 135
+  m_Softness: 1
+  m_Brightness: 1
+  m_Gloss: 1
+  m_EffectArea: 0
+  m_Player:
+    play: 0
+    initialPlayDelay: 0
+    duration: 1
+    loop: 1
+    loopDelay: 1
+    updateMode: 0
 --- !u!1 &829256452
 GameObject:
   m_ObjectHideFlags: 0
@@ -2727,6 +2783,7 @@ GameObject:
   - component: {fileID: 1254843047}
   - component: {fileID: 1254843050}
   - component: {fileID: 1254843051}
+  - component: {fileID: 1254843052}
   m_Layer: 5
   m_Name: Character 1
   m_TagString: Untagged
@@ -2767,6 +2824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterImage: {fileID: 1254843048}
+  CharacterShiny: {fileID: 1254843052}
   Animator: {fileID: 0}
 --- !u!114 &1254843048
 MonoBehaviour:
@@ -2839,6 +2897,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1254843052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254843045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19b7e2285c104f6ca47d583f3e5444f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectFactor: 0.5
+  m_Width: 0.3
+  m_Rotation: 135
+  m_Softness: 1
+  m_Brightness: 1
+  m_Gloss: 1
+  m_EffectArea: 0
+  m_Player:
+    play: 0
+    initialPlayDelay: 0
+    duration: 1
+    loop: 1
+    loopDelay: 1
+    updateMode: 0
 --- !u!1 &1275389593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2853,6 +2937,7 @@ GameObject:
   - component: {fileID: 1275389595}
   - component: {fileID: 1275389598}
   - component: {fileID: 1275389599}
+  - component: {fileID: 1275389600}
   m_Layer: 5
   m_Name: Character 2
   m_TagString: Untagged
@@ -2893,6 +2978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterImage: {fileID: 1275389596}
+  CharacterShiny: {fileID: 1275389600}
   Animator: {fileID: 0}
 --- !u!114 &1275389596
 MonoBehaviour:
@@ -2965,6 +3051,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1275389600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275389593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19b7e2285c104f6ca47d583f3e5444f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectFactor: 0.5
+  m_Width: 0.3
+  m_Rotation: 135
+  m_Softness: 1
+  m_Brightness: 1
+  m_Gloss: 1
+  m_EffectArea: 0
+  m_Player:
+    play: 0
+    initialPlayDelay: 0
+    duration: 1
+    loop: 1
+    loopDelay: 1
+    updateMode: 0
 --- !u!1 &1308221401
 GameObject:
   m_ObjectHideFlags: 0
@@ -3350,7 +3462,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 98.01514, y: 100}
+  m_AnchoredPosition: {x: 98.015625, y: 100}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1630855424
@@ -3732,7 +3844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 84, y: -42.553}
+  m_AnchoredPosition: {x: 84, y: -42.552734}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1682325490
@@ -4609,11 +4721,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7478174565604751890, guid: 3a60923897600c04e854d14324a0752f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 283.4
+      value: 283.4004
       objectReference: {fileID: 0}
     - target: {fileID: 7478174565604751890, guid: 3a60923897600c04e854d14324a0752f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -42.553
+      value: -42.552734
       objectReference: {fileID: 0}
     - target: {fileID: 7478174565604751890, guid: 3a60923897600c04e854d14324a0752f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

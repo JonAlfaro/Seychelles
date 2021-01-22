@@ -57,8 +57,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 80a76df3c0f3768458b81e056bd9cb85, type: 3}
   - {fileID: 8300000, guid: c6095d11ec637d146b8476652fb2edba, type: 3}
   - {fileID: 8300000, guid: 3c5ccb261a3517345af2bbdd2262a2d9, type: 3}
-  ShopEnterClips: []
-  ShopLeaveClips: []
+  ShopEnterClips:
+  - {fileID: 8300000, guid: 35bfdbdb2926ba844b347148c0cd2816, type: 3}
+  - {fileID: 8300000, guid: 65b060f42179e9648ae46c2eed246cc5, type: 3}
+  - {fileID: 8300000, guid: e95f695e980539e49a106295bc701ff3, type: 3}
+  - {fileID: 8300000, guid: 78ade5c77713da04aa6ab9b571c39e9d, type: 3}
+  - {fileID: 8300000, guid: 0de73b6d4315f4a46a5e9d2cdc2fcb2e, type: 3}
+  ShopLeaveClips:
+  - {fileID: 8300000, guid: 2699457e587526248a93735dafd6175b, type: 3}
+  - {fileID: 8300000, guid: 36667c148ea15d7429e9da396a657f97, type: 3}
+  - {fileID: 8300000, guid: c001c1490da43654aa5af1da9e399328, type: 3}
+  - {fileID: 8300000, guid: 9286294325705dc40a3db3f7531a5b74, type: 3}
+  - {fileID: 8300000, guid: a3ad59252d0daad4cb03b8c66f200b20, type: 3}
+  - {fileID: 8300000, guid: 722d2e2f604f5094bac0f77b75914d50, type: 3}
+  - {fileID: 8300000, guid: 8d34f7f7f04d8e347962cb3a841e8617, type: 3}
+  - {fileID: 8300000, guid: a15724fed38fe3149907a3964bc84dcf, type: 3}
 --- !u!82 &8078580728634213615
 AudioSource:
   m_ObjectHideFlags: 0
@@ -71,7 +84,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -173,7 +186,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 127
+  Priority: 0
   DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
