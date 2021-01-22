@@ -278,7 +278,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: POGGERS X 10
+  m_Text: POGGERS
 --- !u!222 &136535431
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1291,7 +1291,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: POGGERS X 10
+  m_Text: POGGERS
 --- !u!222 &572286429
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1491,7 +1491,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: POGGERS X 10
+  m_Text: POGGERS
 --- !u!222 &717937099
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2928,7 +2928,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: POGGERS X 10
+  m_Text: POGGERS
 --- !u!222 &1211405863
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3025,7 +3025,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: POGGERS X 10
+  m_Text: POGGERS
 --- !u!222 &1253917721
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3122,7 +3122,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: POGGERS X 10
+  m_Text: POGGERS
 --- !u!222 &1307051038
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3818,7 +3818,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: POGGERS X 10
+  m_Text: POGGERS
 --- !u!222 &1434084693
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4452,7 +4452,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: POGGERS X 10
+  m_Text: POGGERS
 --- !u!222 &1765177434
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4628,7 +4628,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: POGGERS X 10
+  m_Text: POGGERS
 --- !u!222 &1818617504
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4907,7 +4907,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: POGGERS X 10
+  m_Text: POGGERS
 --- !u!222 &1944641846
 CanvasRenderer:
   m_ObjectHideFlags: 0
