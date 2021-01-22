@@ -45,8 +45,7 @@ public static class CharacterList
         CharacterDatabase.Andette,
         CharacterDatabase.LilAndy,
         CharacterDatabase.Andont,
-        CharacterDatabase.CharFive,
-        CharacterDatabase.TheGiantRat
+        CharacterDatabase.CharFive
     };
 
     public static CharacterData GetRandomCharacter()
