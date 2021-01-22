@@ -68,7 +68,8 @@ public class MobManager : MonoBehaviour
 
     public UnityEvent OnMobKilled;
     private int _absLevel=2;
-    
+
+    private bool isBoss; 
     // rat stuff
     private float ratsAttacking = 0;
     private bool playRat;
@@ -180,7 +181,8 @@ public class MobManager : MonoBehaviour
 
     public void SpawnMobs(float adjustX)
     {
-        _absLevel = flrManager._level * (flrManager._floor + 1);
+        isBoss = false;
+        _absLevel = (flrManager._level * 6) + (flrManager._floor);
         // Destroy Exisiting gb
         foreach (var mob in currentMobs)
         {
@@ -240,6 +242,7 @@ public class MobManager : MonoBehaviour
         }
         else
         {
+            isBoss = true;
             var spawnPos = bossSpawnPoint.transform.position;
             spawnPos.x += adjustX;
             currentMobs.Add(new CurrentLevelMob(Instantiate(levelBoss, spawnPos, Quaternion.identity)));
@@ -347,6 +350,11 @@ public class MobManager : MonoBehaviour
             // Mob is dead, handle gold and exp
             var goldMultiplier = Random.Range(0.5f, 1.5f);
             var gold = currentMobs[mobIndex].MaxHealth * goldMultiplier;
+
+            if (!isBoss && gold > 250)
+            {
+                gold = 250;
+            }
 
             var expMultiplier = Random.Range(0.5f, 1.5f);
             var exp = currentMobs[mobIndex].MaxHealth * expMultiplier;
